@@ -5,5 +5,5 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index]
 
-  resources :suppliers, only: [:index, :new, :create]
+  resources :suppliers, only: [:index, :new, :create, :edit, :update]
 end

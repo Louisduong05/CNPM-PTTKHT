@@ -13,6 +13,8 @@ table.table.table-striped
         td 
           = supplier.name
         td
-          = link_to 'new', new_supplier_path
+          ul.actions
+            li = link_to 'new', new_supplier_path
+            li = link_to 'edit', edit_supplier_path(supplier)
 
           

@@ -13,7 +13,21 @@ class SuppliersController < ApplicationController
     if @supplier.save
       redirect_to suppliers_url, notice: "Save successfully"
     else
-      render 'new', notice: "Moi nhap lai"
+      render 'new'
+    end
+  end
+
+  def edit
+    @supplier = Supplier.find(params[:id])  
+  end
+
+  def update
+    @supplier = Supplier.find(params[:id]) 
+
+    if @supplier.update supplier_params
+      redirect_to suppliers_path, notice: "Cap nhat thanh cong"
+    else
+      render 'edit'
     end
   end
 
