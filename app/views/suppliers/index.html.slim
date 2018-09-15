@@ -1,0 +1,20 @@
+#suppliers-index-container
+  .block
+    .row
+      .col-xs-12
+        h1 SUPPLIER
+      br  
+    table.table.table-striped
+      thead
+        tr
+          th id
+          th Name
+      - @suppliers.each do |supplier|
+        tbody
+          tr
+            td  
+              p =supplier.id
+            td 
+              p = supplier.name
+
+            

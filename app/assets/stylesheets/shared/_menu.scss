@@ -1,0 +1,74 @@
+section.shared-menu { 
+  height: 101px;
+
+  .menu {
+    width: 100%;
+    top: 0;
+    background: #FFFFFF;
+    position: relative;
+    position: fixed;
+    z-index: 2;
+    border-bottom: 1px solid #a8a1a1;;
+
+    .user-info {
+      position: relative;
+      padding: 10px 10px 0 65px;
+      line-height: 20px;
+      height: 101px;
+
+      img {
+        position: absolute;
+        left: 0;
+        top: 25px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin: 0 10px 0 0;
+      }
+      
+      a {
+        display: block;
+        font-size: 14px;
+        line-height: 14px;
+        color: #424242;
+        letter-spacing: 0;
+      }
+
+      .role {
+        font-family: 'Proxima Nova Lt';
+        text-decoration: none;
+        color: #fff;
+        background: #EF6062;
+        padding: 0 10px;
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 0;
+        font-weight: bold;
+        line-height: 20px;
+        margin-top: 5px;
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .user-name {
+        margin: 20px 10px 5px 0px;
+      }
+    }
+    .dropdown-menu {
+      top:100%;
+
+      li.didiver {
+        height: 1px;
+        margin: 9px 0;
+        overflow: hidden;
+        background-color: #e5e5e5;
+      }
+
+      li.didiver:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
