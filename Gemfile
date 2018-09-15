@@ -43,10 +43,10 @@ gem 'rails_utils'
 gem 'slim'
 gem "font-awesome-rails"
 gem "paperclip", "~> 5.0.0"
-gem 'aws-sdk', '~> 2.0.0'
 gem 'friendly_id', '~> 5.1.0'
 gem 'active_link_to'
 gem 'devise'
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,6 +61,9 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'letter_opener'
+  gem 'pry-rails' 
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test do

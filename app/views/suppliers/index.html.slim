@@ -1,20 +1,22 @@
-#suppliers-index-container
-  .block
-    .row
-      .col-xs-12
-        h1 SUPPLIER
-      br  
-    table.table.table-striped
-      thead
+.block
+  .row
+    .col-xs-12
+      h1 SUPPLIER
+    br  
+  table.table.table-striped
+    thead
+      tr
+        th id
+        th Name
+        th Action
+    - @suppliers.each do |supplier|
+      tbody
         tr
-          th id
-          th Name
-      - @suppliers.each do |supplier|
-        tbody
-          tr
-            td  
-              p =supplier.id
-            td 
-              p = supplier.name
+          td  
+            p = supplier.id
+          td 
+            p = supplier.name
+          td
+            p = link_to 'new', new_supplier_path
 
-            
+          
