@@ -25,10 +25,16 @@ class SuppliersController < ApplicationController
     @supplier = Supplier.find(params[:id]) 
 
     if @supplier.update supplier_params
-      redirect_to suppliers_path, notice: "Cap nhat thanh cong"
+      redirect_to suppliers_path, notice: "Supplier has been updated successfully"
     else
       render 'edit'
     end
+  end
+
+  def destroy
+    @supplier = Supplier.find(params[:id]) 
+    @supplier.destroy
+    redirect_to suppliers_path, notice: "Supplier has been deleted successfully"
   end
 
   private

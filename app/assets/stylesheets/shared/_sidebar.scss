@@ -18,31 +18,30 @@ section.shared-sidebar {
     }
   }
 
-  .shared-sidebar-container.nice-scroll {
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
 
-      li {
-        margin-left: 5px;
-        a {
-          display: block;
-          line-height: 34px;
-          font-size: 12px;
-          color: #757575;
-          white-space: nowrap;
+    li {
+      margin-left: 5px;
 
-          .fa {
-            font-size: 20px;
-            margin-right: 10px;
-            margin-top: 5px;
-          }
+      a {
+        display: block;
+        line-height: 34px;
+        font-size: 12px;
+        color: #757575;
+        white-space: nowrap;
+
+        .fa {
+          font-size: 20px;
+          margin-right: 10px;
+          margin-top: 5px;
         }
-        a:hover {
-          .fa {
-            color: #F36C21;
-          }
+      }
+      a:hover {
+        .fa {
+          color: #F36C21;
         }
       }
     }
