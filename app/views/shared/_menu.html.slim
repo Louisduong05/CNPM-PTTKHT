@@ -1,23 +1,20 @@
 section.shared-menu
-  .menu
-    .row
-      .col-xs-12
-        .pull-right
-          .user-info
-            = image_tag("logo.jpg")
-            .user-name
-              a.dropdown-toggle[data-toggle="dropdown" role="button"]
-                | Admin
-                span.fa.fa-angle-down
-              .role 
-                p Admin
-              ul.dropdown-menu
-                li
-                  = link_to 'Homepage'
-                li.didiver[role="separator"]
-                li
-                  = link_to 'My Profile'
-                li.didiver[role="separator"]
-                - if user_signed_in?
-                  li = link_to 'Logout', destroy_user_session_path, method: :delete
-                li.didiver[role="separator"]   
+  .pull-right
+    .user-info
+      = image_tag("logo.jpg")
+      .user-name
+        a.dropdown-toggle[data-toggle="dropdown" role="button"]
+          | Admin
+          span.fa.fa-angle-down
+        .role 
+          p Admin
+        ul.dropdown-menu
+          li
+            = link_to 'Homepage'
+          li.didiver[role="separator"]
+          li
+            = link_to 'My Profile'
+          li.didiver[role="separator"]
+          - if user_signed_in?
+            li = link_to 'Logout', destroy_user_session_path, method: :delete
+          li.didiver[role="separator"]   

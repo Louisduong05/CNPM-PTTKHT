@@ -1,22 +1,18 @@
-.block
-  .row
-    .col-xs-12
-      h1 SUPPLIER
-    br  
-  table.table.table-striped
-    thead
-      tr
-        th id
-        th Name
-        th Action
+h1 SUPPLIER
+table.table.table-striped
+  thead
+    tr
+      th id
+      th Name
+      th Action
+  tbody
     - @suppliers.each do |supplier|
-      tbody
-        tr
-          td  
-            p = supplier.id
-          td 
-            p = supplier.name
-          td
-            p = link_to 'new', new_supplier_path
+      tr
+        td  
+          = supplier.id
+        td 
+          = supplier.name
+        td
+          = link_to 'new', new_supplier_path
 
           

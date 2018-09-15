@@ -1,12 +1,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome"; 
+@import "theme";
 @import "shared/*";
 @import "suppliers/*";
-
-body {
-  position: relative;
-}
-main {
-  padding-left: 181px;
-}
