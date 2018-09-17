@@ -1,2 +1,34 @@
-- @products.each do |product|
-  p = product.name
+h1 PRODUCT
+
+table.table.table-striped
+  thead
+    tr
+      th ID
+      th Name
+      th Price
+      th Quantity
+      th Country
+      th Supplier
+      th Remarks
+  tbody
+    - @products.each do |product|
+      tr
+        td  
+          = product.id
+        td 
+          = product.name
+        td 
+          = product.price
+        td
+          = product.quantity
+        td 
+          = product.country
+        td
+          = product.supplier&.name
+        td
+          = product.remarks    
+        td
+          ul.actions
+            li = link_to 'New'
+            li = link_to 'Edit'
+            li = link_to 'Delete'

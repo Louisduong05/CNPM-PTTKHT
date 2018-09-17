@@ -21,14 +21,14 @@ puts "===== Add Supplier successfully ====="
 
 puts "===== Start adding Product ====="
 product = Product.create(name: "Iphone 8", price: 18000000, quantity: "100",country: "USA", supplier: supplier)
-product = Product.create(name: "Iphone X", price: 20000000, quantity: "100",country: "USA", supplier_id: supplier.id)
-product = Product.create(name: "Iphone 8+", price: 19000000, quantity: "100",country: "USA", supplier: supplier)
-product = Product.create(name: "Samsung J8", price: 8000000, quantity: "100",country: "korean", supplier: supplier2)
-product = Product.create(name: "Samsung A8", price: 18000000, quantity: "100",country: "korean", supplier: supplier2)
-product = Product.create(name: "Samsung A8+", price: 28000000, quantity: "100",country: "korean", supplier: supplier2)
-product = Product.create(name: "HTC U11", price: 8000000, quantity: "100",country: "Taiwan", supplier: supplier3)
-product = Product.create(name: "HTC U11+", price: 18000000, quantity: "100",country: "Taiwan", supplier: supplier3)
-product = Product.create(name: "HTC U12+", price: 28000000, quantity: "100",country: "Taiwan", supplier: supplier3)
+product2 = Product.create(name: "Iphone X", price: 20000000, quantity: "100",country: "USA", supplier_id: supplier.id)
+product3 = Product.create(name: "Iphone 8+", price: 19000000, quantity: "100",country: "USA", supplier: supplier)
+product4 = Product.create(name: "Samsung J8", price: 8000000, quantity: "100",country: "korean", supplier: supplier2)
+product5 = Product.create(name: "Samsung A8", price: 18000000, quantity: "100",country: "korean", supplier: supplier2)
+product6 = Product.create(name: "Samsung A8+", price: 28000000, quantity: "100",country: "korean", supplier: supplier2)
+product7 = Product.create(name: "HTC U11", price: 8000000, quantity: "100",country: "Taiwan", supplier: supplier3)
+product8 = Product.create(name: "HTC U11+", price: 18000000, quantity: "100",country: "Taiwan", supplier: supplier3)
+product9 = Product.create(name: "HTC U12+", price: 28000000, quantity: "100",country: "Taiwan", supplier: supplier3)
 puts "===== Add Product successfully ====="
 
 
