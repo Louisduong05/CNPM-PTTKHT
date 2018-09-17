@@ -15,4 +15,17 @@ class ProductsController < ApplicationController
       render 'new'
     end
   end
+
+  def edit
+    @product = Product.find(params[:id])
+  end
+
+  def update
+    @product = Product.find(params[:id])
+    if @product.update params.require(:product).permit(:name, :price, :quantity, :country, :remarks, :supplier_id)
+      redirect_to products_path, notice: "Cap nhat thanh cong"
+    else
+      render edit, notice:"Cap nhat that bai"
+    end
+  end
 end

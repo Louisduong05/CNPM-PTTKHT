@@ -1,11 +1,3 @@
 h1 NEW PRODUCT
 
-.block
-  = simple_form_for @product do |f|
-    = f.input :name
-    = f.input :price
-    = f.input :quantity
-    = f.input :country
-    = f.input :remarks
-    = f.association :supplier
-    = f.button :submit
+= render 'form'
