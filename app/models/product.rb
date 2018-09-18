@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 	belongs_to :supplier
-  belongs_to :export_item
+  has_many :exported_items
 
 	validates :name,	presence: true
 	validates :price,	presence: true

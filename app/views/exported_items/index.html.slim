@@ -1,0 +1,24 @@
+h1 EXPORT ITEMS
+
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Product
+      th Quantity
+      th Unit_price
+      th Export_id
+      th Action
+  tbody
+    - @exported_items.each do |exported_item|
+      tr
+        td = exported_item.id
+        td = exported_item.product&.name
+        td = exported_item.quantity
+        td = exported_item.unit_price
+        td = exported_item.export.id
+        td 
+          ul.actions
+            li = link_to 'New'
+            li = link_to 'Edit'
+            li = link_to 'Delete'
