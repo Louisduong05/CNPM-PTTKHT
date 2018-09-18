@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :products, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :products,        only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :suppliers, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :suppliers,       only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :exported_items, only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :exported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
 
+  resources :exports,         only: [:index]
 end

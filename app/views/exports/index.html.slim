@@ -1,0 +1,19 @@
+h1 EXPORT
+
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th User
+      th Price
+  tbody
+    - @exports.each do |export|
+      tr
+        td = export.id
+        td = export.user.username
+        td = export.price 
+        td 
+          ul.actions
+            li = link_to 'New' 
+            li = link_to 'Edit'
+            li = link_to 'Delete'
