@@ -28,4 +28,10 @@ class ExportedItemsController < ApplicationController
       render 'edit', notice: "Cap nhat that bai"               
     end        
   end
+
+  def destroy
+    @exported_item = ExportedItem.find(params[:id])
+    @exported_item.destroy
+    redirect_to exported_items_path, notice:"Xoa Thanh cong"
+  end
 end 

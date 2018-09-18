@@ -21,4 +21,4 @@ table.table.table-striped
           ul.actions
             li = link_to 'New', new_exported_item_path
             li = link_to 'Edit', edit_exported_item_path(exported_item)
-            li = link_to 'Delete'
+            li = link_to 'Delete', exported_item_path(exported_item), method: :delete
