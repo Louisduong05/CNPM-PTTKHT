@@ -7,6 +7,6 @@ Rails.application.routes.draw do
 
   resources :suppliers, only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :exported_items, only: [:index, :new, :create]
+  resources :exported_items, only: [:index, :new, :create, :edit, :update]
 
 end

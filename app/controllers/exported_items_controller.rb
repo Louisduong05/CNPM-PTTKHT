@@ -16,4 +16,16 @@ class ExportedItemsController < ApplicationController
     end  
   end
 
+  def edit
+    @exported_item = ExportedItem.find(params[:id])
+  end
+
+  def update
+    @exported_item = ExportedItem.find(params[:id])
+    if @exported_item.update params.require(:exported_item).permit(:product_id, :quantity, :unit_price, :export_id)
+      redirect_to exported_items_path, notice: "Cap nhat thanh cong"
+    else
+      render 'edit', notice: "Cap nhat that bai"               
+    end        
+  end
 end 
