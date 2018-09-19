@@ -1,4 +1,6 @@
 class ImportsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @imports = Import.all
   end

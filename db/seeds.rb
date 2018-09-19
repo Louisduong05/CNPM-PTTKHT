@@ -33,7 +33,9 @@ puts "===== End ====="
 
 
 puts "===== Start adding User ====="
-user = User.create(email: "thach@gmail.com", password: "Thach123", username: "Louis", firstname: "Thach", lastname: "Duong Ngoc", dob: "22/09/1997", phone: "0965406112", address: "Thanh Pho Ho Chi Minh")
+user = User.create(email: "thach@gmail.com", password: "Thach123", username: "Louis", firstname: "Thach", lastname: "Duong Ngoc", dob: "22/09/1997", phone: "0965406112", address: "Thanh Pho Ho Chi Minh", type: Admin)
+user2 = User.create(email: "phat@gmail.com", password: "Thach123", username: "James", firstname: "Phat", lastname: "La Hong", dob: "06/04/1990", phone: "0933557739", address: "Thanh Pho Ho Chi Minh", type: Stocker)
+user = User.create(email: "tran@gmail.com", password: "Thach123", username: "Bambi", firstname: "Tran", lastname: "Duong Ngoc", dob: "22/02/1993", phone: "0947992202", address: "Thanh Pho Ho Chi Minh", type: Accountant)
 puts "===== Add User successfully ====="
 
 puts "===== Start adding Supplier ====="

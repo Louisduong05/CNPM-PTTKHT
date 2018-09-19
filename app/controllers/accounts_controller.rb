@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  load_and_authorize_resource :user
+
   def index
     @accounts = User.all
   end

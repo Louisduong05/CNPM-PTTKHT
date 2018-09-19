@@ -1,4 +1,6 @@
 class ImportedItemsController < ApplicationController
+  load_and_authorize_resource
+  
   def index
     @imported_items = ImportedItem.all
   end

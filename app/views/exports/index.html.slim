@@ -1,6 +1,7 @@
 .block  
   h1 EXPORT
-  p.button-new = link_to 'New', new_export_path
+  - if can? :create, Export
+    p.button-new = link_to 'New', new_export_path
 
   table.table.table-striped
     thead
@@ -17,5 +18,7 @@
           td = export.price 
           td 
             ul.actions
-              li = link_to 'Edit', edit_export_path(export)
-              li = link_to 'Delete',export_path(export), method: :delete
+              - if can? :update, export
+                li = link_to 'Edit', edit_export_path(export)
+              - if can? :delete, export  
+                li = link_to 'Delete',export_path(export), method: :delete

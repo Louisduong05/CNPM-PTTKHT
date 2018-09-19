@@ -1,6 +1,7 @@
 .block  
-  h1 EXPORT ITEMS
-  p.button-new = link_to 'New', new_exported_item_path
+  h1 EXPORTED ITEM
+  - if can? :create, ExportedItem
+    p.button-new = link_to 'New', new_exported_item_path
 
   table.table.table-striped
     thead
@@ -21,5 +22,7 @@
           td = exported_item.export.id
           td 
             ul.actions
-              li = link_to 'Edit', edit_exported_item_path(exported_item)
-              li = link_to 'Delete', exported_item_path(exported_item), method: :delete
+              - if can? :create, exported_item
+                li = link_to 'Edit', edit_exported_item_path(exported_item)
+              - if can? :destroy, exported_item
+                li = link_to 'Delete', exported_item_path(exported_item), method: :delete

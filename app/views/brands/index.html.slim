@@ -1,6 +1,7 @@
 .block
   h1 BRANDS
-  p.button-new = link_to 'New', new_brand_path
+  - if can? :create, Brand
+    p.button-new = link_to 'New', new_brand_path
 
   table.table.table-striped
     thead
@@ -17,5 +18,7 @@
           td = brand.country
           td 
             ul.actions
-              li = link_to 'Edit', edit_brand_path(brand)
-              li = link_to 'Delete',brand_path(brand), method: :delete
+              - if can? :update, brand
+                li = link_to 'Edit', edit_brand_path(brand)
+              - if can? :destroy, brand  
+                li = link_to 'Delete',brand_path(brand), method: :delete

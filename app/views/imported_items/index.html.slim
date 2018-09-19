@@ -1,6 +1,7 @@
 .block  
-  h1 IMPORT ITEMS
-  p.button-new = link_to 'New', new_imported_item_path
+  h1 IMPORTED ITEMS
+  - if can? :create, ImportedItem
+    p.button-new = link_to 'New', new_imported_item_path
   table.table.table-striped
     thead
       tr
@@ -20,5 +21,7 @@
           td = imported_item.import.id
           td 
             ul.actions
-              li = link_to 'Edit', edit_imported_item_path(imported_item)
-              li = link_to 'Delete', imported_item_path(imported_item), method: :delete
+              - if can? :update, imported_item              
+                li = link_to 'Edit', edit_imported_item_path(imported_item)
+              - if can? :destroy, imported_item              
+                li = link_to 'Delete', imported_item_path(imported_item), method: :delete

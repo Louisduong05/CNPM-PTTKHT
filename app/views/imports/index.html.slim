@@ -1,6 +1,7 @@
 .block  
   h1 IMPORT
-  p.button-new = link_to 'New', new_import_path
+  - if can? :create, Import
+    p.button-new = link_to 'New', new_import_path
 
   table.table.table-striped
     thead
@@ -16,6 +17,8 @@
           td = import.user.username
           td = import.price 
           td 
-            ul.actions         
-              li = link_to 'Edit', edit_import_path(import)
-              li = link_to 'Delete',import_path(import), method: :delete
+            ul.actions
+              - if can? :update, import         
+                li = link_to 'Edit', edit_import_path(import)
+              - if can? :destroy, import  
+                li = link_to 'Delete',import_path(import), method: :delete

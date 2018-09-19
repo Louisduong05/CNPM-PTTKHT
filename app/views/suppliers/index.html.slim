@@ -1,6 +1,7 @@
 .block  
   h1 SUPPLIER
-  p.button-new = link_to 'New', new_supplier_path
+  - if can? :create, Supplier
+    p.button-new = link_to 'New', new_supplier_path
 
   table.table.table-striped
     thead
@@ -23,7 +24,9 @@
             = supplier.address  
           td
             ul.actions 
-              li = link_to 'Edit', edit_supplier_path(supplier)
-              li = link_to 'Delete', supplier_path(supplier), method: :delete
+              - if can? :update, supplier
+                li = link_to 'Edit', edit_supplier_path(supplier)
+              - if can? :destroy, supplier               
+                li = link_to 'Delete', supplier_path(supplier), method: :delete
 
             
