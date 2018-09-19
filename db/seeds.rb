@@ -32,9 +32,9 @@ user = User.create(email: "thach@gmail.com", password: "Thach123", username: "Lo
 puts "===== Add User successfully ====="
 
 puts "===== Start adding Supplier ====="
-supplier = Supplier.create(name: "apple")
-supplier2 = Supplier.create(name: "SamSung")
-supplier3 = Supplier.create(name: "HTC")
+supplier = Supplier.create(name: "FPTshop", phone: "0335031524", address: "TP Ho Chi Minh")
+supplier2 = Supplier.create(name: "Thegioididong", phone: "0335031525", address: "TD Ha Noi")
+supplier3 = Supplier.create(name: "TNC", phone: "0335031526", address: "TP Ho Chi Minh")
 puts "===== Add Supplier successfully ====="
 
 puts "===== Start adding Product ====="

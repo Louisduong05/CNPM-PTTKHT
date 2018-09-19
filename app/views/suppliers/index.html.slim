@@ -5,6 +5,8 @@ table.table.table-striped
     tr
       th ID
       th Name
+      th Phone
+      th Adress
       th Action
   tbody
     - @suppliers.each do |supplier|
@@ -13,6 +15,10 @@ table.table.table-striped
           = supplier.id
         td 
           = supplier.name
+        td
+          = supplier.phone
+        td 
+          = supplier.address  
         td
           ul.actions
             li = link_to 'New', new_supplier_path

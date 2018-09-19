@@ -1,5 +1,7 @@
 .block
   = simple_form_for @supplier do |f|
     = f.input :name
+    = f.input :phone
+    = f.input :address
     br
     = f.button :submit
