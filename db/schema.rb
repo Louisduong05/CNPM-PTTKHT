@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_18_133032) do
+ActiveRecord::Schema.define(version: 2018_09_19_023843) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,21 @@ ActiveRecord::Schema.define(version: 2018_09_18_133032) do
     t.bigint "user_id"
     t.integer "price"
     t.index ["user_id"], name: "index_exports_on_user_id"
+  end
+
+  create_table "imported_items", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "unit_price"
+    t.bigint "import_id"
+    t.bigint "product_id"
+    t.index ["import_id"], name: "index_imported_items_on_import_id"
+    t.index ["product_id"], name: "index_imported_items_on_product_id"
+  end
+
+  create_table "imports", force: :cascade do |t|
+    t.integer "price"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_imports_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -71,5 +86,8 @@ ActiveRecord::Schema.define(version: 2018_09_18_133032) do
   add_foreign_key "exported_items", "exports"
   add_foreign_key "exported_items", "products"
   add_foreign_key "exports", "users"
+  add_foreign_key "imported_items", "imports"
+  add_foreign_key "imported_items", "products"
+  add_foreign_key "imports", "users"
   add_foreign_key "products", "suppliers"
 end

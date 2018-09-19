@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable     
 
   has_many :exports
-  has_many :import  
+  has_many :imports 
 end
