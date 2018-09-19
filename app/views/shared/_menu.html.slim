@@ -4,12 +4,14 @@ section.shared-menu
       = image_tag("shared/avatar.jpg")
       .user-name
         a.dropdown-toggle[data-toggle="dropdown" role="button"]
-          | Admin
-          span.fa.fa-angle-down
+          - if user_signed_in?
+            = current_user.email
+            span.fa.fa-angle-down
         .role 
-          p Admin
+          - if user_signed_in?
+            p = current_user.type
         ul.dropdown-menu
-          li
+          li 
             = link_to 'Homepage', '/'
           li.didiver[role="separator"]
           - if user_signed_in?
