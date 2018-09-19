@@ -1,17 +1,29 @@
-puts "===== Destroy User ====="
-User.destroy_all
-puts "===== End ====="
 puts "===== Destroy ExportedItem ====="
 ExportedItem.destroy_all
 puts "===== End ====="
-puts "===== Destroy ExportedItem ====="
+
+puts "===== Destroy Export ====="
 Export.destroy_all
 puts "===== End ====="
+
+puts"===== Destroy ImportedItem ====="
+ImportedItem.destroy_all
+puts "===== End ====="
+
+puts "===== Destroy Import ====="
+Import.destroy_all
+puts "===== End ====="
+
 puts "===== Destroy Product ====="
 Product.destroy_all
 puts "===== End ====="
+
 puts "===== Destroy Supplier ====="
 Supplier.destroy_all
+puts "===== End ====="
+
+puts "===== Destroy User ====="
+User.destroy_all
 puts "===== End ====="
 
 
@@ -41,10 +53,19 @@ puts "===== Start Adding Export ====="
 export = Export.create!(price: 2000000, user: user)
 puts "===== Add Export successfully ====="
 
-puts "===== Start Adding Export ====="
+puts "===== Start Adding Exported Item ====="
 exporteditem = ExportedItem.create(quantity: 20, unit_price: 250000000, export: export, product: product)
 exporteditem2 = ExportedItem.create(quantity: 20, unit_price: 250000000, export: export, product: product2)
-puts "===== Add Export successfully ====="
+puts "===== Add Exported Item successfully ====="
+
+puts "===== Start Adding Import ====="
+import = Import.create!(price: 2100000, user: user)
+puts "===== Add Import successfully ====="
+
+puts "===== Start Adding Imported Item ====="
+importeditem = ImportedItem.create(quantity: 20, unit_price: 250000000, import: import, product: product3)
+importeditem2 = ImportedItem.create(quantity: 20, unit_price: 250000000, import: import, product: product4)
+puts "===== Add Imported Item successfully ====="
 
 
 # product = Product.create(name: "", user_id: user.id)
