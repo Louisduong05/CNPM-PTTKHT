@@ -1,0 +1,7 @@
+h1 NEW EXPORT
+
+.block
+  = simple_form_for @export do |f|
+    = f.association :user
+    = f.input :price
+    = f.button :submit
