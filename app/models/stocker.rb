@@ -1,0 +1,1 @@
+class Stocker < User; end

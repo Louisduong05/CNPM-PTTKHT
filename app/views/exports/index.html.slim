@@ -1,20 +1,21 @@
-h1 EXPORT
-= link_to 'New', new_export_path
+.block  
+  h1 EXPORT
+  p.button-new = link_to 'New', new_export_path
 
-table.table.table-striped
-  thead
-    tr
-      th Id
-      th User
-      th Price
-      td Action
-  tbody
-    - @exports.each do |export|
+  table.table.table-striped
+    thead
       tr
-        td = export.id
-        td = export.user.username
-        td = export.price 
-        td 
-          ul.actions
-            li = link_to 'Edit', edit_export_path(export)
-            li = link_to 'Delete',export_path(export), method: :delete
+        th Id
+        th User
+        th Price
+        td Action
+    tbody
+      - @exports.each do |export|
+        tr
+          td = export.id
+          td = export.user.username
+          td = export.price 
+          td 
+            ul.actions
+              li = link_to 'Edit', edit_export_path(export)
+              li = link_to 'Delete',export_path(export), method: :delete

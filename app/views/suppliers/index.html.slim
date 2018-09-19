@@ -1,28 +1,29 @@
-h1 SUPPLIER
-= link_to 'New', new_supplier_path
+.block  
+  h1 SUPPLIER
+  p.button-new = link_to 'New', new_supplier_path
 
-table.table.table-striped
-  thead
-    tr
-      th ID
-      th Name
-      th Phone
-      th Adress
-      th Action
-  tbody
-    - @suppliers.each do |supplier|
+  table.table.table-striped
+    thead
       tr
-        td  
-          = supplier.id
-        td 
-          = supplier.name
-        td
-          = supplier.phone
-        td 
-          = supplier.address  
-        td
-          ul.actions 
-            li = link_to 'Edit', edit_supplier_path(supplier)
-            li = link_to 'Delete', supplier_path(supplier), method: :delete
+        th ID
+        th Name
+        th Phone
+        th Adress
+        th Action
+    tbody
+      - @suppliers.each do |supplier|
+        tr
+          td  
+            = supplier.id
+          td 
+            = supplier.name
+          td
+            = supplier.phone
+          td 
+            = supplier.address  
+          td
+            ul.actions 
+              li = link_to 'Edit', edit_supplier_path(supplier)
+              li = link_to 'Delete', supplier_path(supplier), method: :delete
 
-          
+            

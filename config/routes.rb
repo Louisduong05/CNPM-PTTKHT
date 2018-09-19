@@ -17,6 +17,6 @@ Rails.application.routes.draw do
 
   resources :brands,          only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :accounts,           only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :accounts,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
 end

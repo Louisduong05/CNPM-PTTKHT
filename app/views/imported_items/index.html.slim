@@ -1,23 +1,24 @@
-h1 IMPORT ITEMS
-= link_to 'New', new_imported_item_path
-table.table.table-striped
-  thead
-    tr
-      th Id
-      th Product
-      th Quantity
-      th Unit_price
-      th Import_id
-      th Action
-  tbody
-    - @imported_items.each do |imported_item|
+.block  
+  h1 IMPORT ITEMS
+  p.button-new = link_to 'New', new_imported_item_path
+  table.table.table-striped
+    thead
       tr
-        td = imported_item.id
-        td = imported_item.product&.name
-        td = imported_item.quantity
-        td = imported_item.unit_price
-        td = imported_item.import.id
-        td 
-          ul.actions
-            li = link_to 'Edit', edit_imported_item_path(imported_item)
-            li = link_to 'Delete', imported_item_path(imported_item), method: :delete
+        th Id
+        th Product
+        th Quantity
+        th Unit_price
+        th Import_id
+        th Action
+    tbody
+      - @imported_items.each do |imported_item|
+        tr
+          td = imported_item.id
+          td = imported_item.product&.name
+          td = imported_item.quantity
+          td = imported_item.unit_price
+          td = imported_item.import.id
+          td 
+            ul.actions
+              li = link_to 'Edit', edit_imported_item_path(imported_item)
+              li = link_to 'Delete', imported_item_path(imported_item), method: :delete

@@ -1,7 +1,6 @@
-.block
-  = simple_form_for @imported_item do |f|
-    = f.association :product
-    = f.input :quantity
-    = f.input :unit_price
-    = f.association :import
-    = f.button :submit
+= simple_form_for @imported_item do |f|
+  = f.association :product
+  = f.input :quantity
+  = f.input :unit_price
+  = f.association :import
+  = f.button :submit

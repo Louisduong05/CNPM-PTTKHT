@@ -1,20 +1,21 @@
-h1 IMPORT
-= link_to 'New', new_import_path
+.block  
+  h1 IMPORT
+  p.button-new = link_to 'New', new_import_path
 
-table.table.table-striped
-  thead
-    tr
-      th Id
-      th User
-      th Price
-      td Action
-  tbody
-    - @imports.each do |import|
+  table.table.table-striped
+    thead
       tr
-        td = import.id
-        td = import.user.username
-        td = import.price 
-        td 
-          ul.actions         
-            li = link_to 'Edit', edit_import_path(import)
-            li = link_to 'Delete',import_path(import), method: :delete
+        th Id
+        th User
+        th Price
+        td Action
+    tbody
+      - @imports.each do |import|
+        tr
+          td = import.id
+          td = import.user.username
+          td = import.price 
+          td 
+            ul.actions         
+              li = link_to 'Edit', edit_import_path(import)
+              li = link_to 'Delete',import_path(import), method: :delete

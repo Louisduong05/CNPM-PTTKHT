@@ -76,6 +76,7 @@ GEM
       xpath (~> 3.1)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
+    choice (0.2.0)
     chromedriver-helper (2.0.0)
       archive-zip (~> 0.10)
       nokogiri (~> 1.8)
@@ -107,6 +108,8 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
+    enumerize (2.2.2)
+      activesupport (>= 3.2)
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
@@ -194,6 +197,11 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
+    rails-erd (1.5.2)
+      activerecord (>= 3.2)
+      activesupport (>= 3.2)
+      choice (~> 0.2.0)
+      ruby-graphviz (~> 1.2)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
     rails_utils (4.0.0)
@@ -211,6 +219,7 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    ruby-graphviz (1.2.3)
     ruby_dep (1.5.0)
     rubyzip (1.2.2)
     sass (3.5.7)
@@ -288,6 +297,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   country_select (~> 3.1.1)
   devise
+  enumerize
   font-awesome-rails
   friendly_id (~> 5.1.0)
   html2slim
@@ -300,6 +310,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 5.2.1)
+  rails-erd
   rails_utils
   sass-rails (~> 5.0)
   selenium-webdriver

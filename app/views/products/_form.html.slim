@@ -1,9 +1,8 @@
-.block
-  = simple_form_for @product do |f|
-    = f.input :name
-    = f.input :price
-    = f.input :quantity
-    = f.association :brand
-    = f.input :remarks
-    = f.association :supplier
-    = f.button :submit
+= simple_form_for @product do |f|
+  = f.input :name
+  = f.input :price
+  = f.input :quantity
+  = f.association :brand
+  = f.input :remarks
+  = f.association :supplier
+  = f.button :submit

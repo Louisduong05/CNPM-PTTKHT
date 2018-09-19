@@ -1,0 +1,28 @@
+.block
+  h1 User
+
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th Email
+        th Account name
+        td First name
+        td Last name
+        td Day of birth
+        td Phone
+        td Address
+    tbody
+      tr
+        td = @account.id
+        td = @account.email
+        td = @account.username
+        td = @account.firstname
+        td = @account.lastname
+        td = @account.dob
+        td = @account.phone
+        td = @account.address
+        td 
+          ul.actions
+            li = link_to 'Edit', edit_account_path(@account)
+            li = link_to 'Delete',account_path(@account), method: :delete

@@ -27,23 +27,24 @@ section.shared-sidebar {
       margin-left: 5px;
 
       a {
-        display: block;
         line-height: 34px;
-        font-size: 12px;
+        font-size: 15px;
         color: #757575;
         white-space: nowrap;
 
-        .fa {
-          font-size: 20px;
-          margin-right: 10px;
-          margin-top: 5px;
-        }
       }
-      a:hover {
-        .fa {
-          color: #F36C21;
-        }
+
+      .fa {
+        font-size: 20px;
+        margin-right: 10px;
       }
     }
+
+    li:hover {
+      .fa {
+          color: #F36C21
+      }
+    }
+
   }
 }
