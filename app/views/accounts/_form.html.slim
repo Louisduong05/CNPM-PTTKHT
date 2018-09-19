@@ -1,0 +1,11 @@
+.block
+  = simple_form_for @account, url: accounts_path do |f|
+    = f.input :email
+    = f.input :password
+    = f.input :username
+    = f.input :firstname
+    = f.input :lastname
+    = f.input :dob
+    = f.input :phone
+    = f.input :address
+    = f.button :submit

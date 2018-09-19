@@ -1,0 +1,29 @@
+h1 ACCCOUNTS
+= link_to 'New', new_account_path
+
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Email
+      th Account name
+      td First name
+      td Last name
+      td Day of birth
+      td Phone
+      td Address
+  tbody
+    - @accounts.each do |account|
+      tr
+        td = account.id
+        td = account.email
+        td = account.username
+        td = account.firstname
+        td = account.lastname
+        td = account.dob
+        td = account.phone
+        td = account.address
+        td 
+          ul.actions
+            li = link_to 'Edit'
+            li = link_to 'Delete'
