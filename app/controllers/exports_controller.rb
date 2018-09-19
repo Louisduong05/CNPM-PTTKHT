@@ -15,4 +15,17 @@ class ExportsController < ApplicationController
       render 'new'
     end 
   end
+
+  def edit
+    @export = Export.find(params[:id])
+  end
+
+  def update
+    @export = Export.find(params[:id])
+    if @export.update params.require(:export).permit(:user_id, :price)
+      redirect_to exports_path, notice: "Cap nhat thanh cong"
+    else
+      render 'edit', notice: "Cap nhat that bai"
+    end  
+  end
 end
