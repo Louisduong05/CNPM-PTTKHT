@@ -4,34 +4,26 @@ section.shared-sidebar
 
   ul
     li
-      a href="#" 
-        i.fa.fa-home aria-hidden="true" 
-        | Restaurants
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Products', products_path
     li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | Suppliers(Global)
-    li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | Food Items (Global)
-    li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | User Roles
-    li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | User Accounts
-    li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | Food Categories
-    li
-      a href="" 
-        i.fa.fa-home aria-hidden="true" 
-        | Contacts
-    li
-      a href="" 
-        i.fa.fa-cog aria-hidden="true" 
-        | Configurations
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Suppliers', suppliers_path 
+    li 
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Exports', exports_path 
+    li 
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Exported Items', exported_items_path
+    li 
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Imports', imports_path
+    li 
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Imported Items', imported_items_path
+    li 
+      i.fa.fa-home aria-hidden="true"
+      = link_to 'Brands', brands_path  
+    li 
+      i.fa.fa-cog aria-hidden="true"
+      = link_to 'Accounts', users_path

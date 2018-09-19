@@ -1,0 +1,20 @@
+h1 BRANDS
+= link_to 'New', new_brand_path
+
+table.table.table-striped
+  thead
+    tr
+      th Id
+      th Name
+      th Country
+      td Action
+  tbody
+    - @brands.each do |brand|
+      tr
+        td = brand.id
+        td = brand.name
+        td = brand.country
+        td 
+          ul.actions
+            li = link_to 'Edit', edit_brand_path(brand)
+            li = link_to 'Delete',brand_path(brand), method: :delete

@@ -1,4 +1,5 @@
 h1 EXPORT ITEMS
+= link_to 'New', new_exported_item_path
 
 table.table.table-striped
   thead
@@ -19,6 +20,5 @@ table.table.table-striped
         td = exported_item.export.id
         td 
           ul.actions
-            li = link_to 'New', new_exported_item_path
             li = link_to 'Edit', edit_exported_item_path(exported_item)
             li = link_to 'Delete', exported_item_path(exported_item), method: :delete

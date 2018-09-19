@@ -15,4 +15,8 @@ Rails.application.routes.draw do
 
   resources :imports,         only: [:index, :new, :create, :edit, :update, :destroy]
 
+  resources :brands,          only: [:index, :new, :create, :edit, :update, :destroy]
+
+  resources :users,          only: [:index]
+
 end

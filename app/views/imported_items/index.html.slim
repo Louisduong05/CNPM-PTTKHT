@@ -1,5 +1,5 @@
 h1 IMPORT ITEMS
-
+= link_to 'New', new_imported_item_path
 table.table.table-striped
   thead
     tr
@@ -19,6 +19,5 @@ table.table.table-striped
         td = imported_item.import.id
         td 
           ul.actions
-            li = link_to 'New', new_imported_item_path
             li = link_to 'Edit', edit_imported_item_path(imported_item)
             li = link_to 'Delete', imported_item_path(imported_item), method: :delete
