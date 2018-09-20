@@ -7,11 +7,14 @@
         td Id
         td User
         td Price
+        //td Supplier
+        td Action
     tbody
       tr
         td = @export.id
         td = @export.user_id
         td = @export.total_price
+        //td = @export.supplier&.name
         td = link_to 'Edit', edit_export_path(@export)
   h2 SHOW EXPORTED ITEMS
 

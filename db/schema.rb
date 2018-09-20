@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_053918) do
+ActiveRecord::Schema.define(version: 2018_09_20_073346) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_053918) do
 
   create_table "imports", force: :cascade do |t|
     t.bigint "user_id"
+    t.bigint "supplier_id"
+    t.index ["supplier_id"], name: "index_imports_on_supplier_id"
     t.index ["user_id"], name: "index_imports_on_user_id"
   end
 
@@ -57,10 +59,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_053918) do
     t.text "remarks"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "supplier_id"
     t.bigint "brand_id"
     t.index ["brand_id"], name: "index_products_on_brand_id"
-    t.index ["supplier_id"], name: "index_products_on_supplier_id"
   end
 
   create_table "suppliers", force: :cascade do |t|
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_053918) do
   add_foreign_key "exports", "users"
   add_foreign_key "imported_items", "imports"
   add_foreign_key "imported_items", "products"
+  add_foreign_key "imports", "suppliers"
   add_foreign_key "imports", "users"
   add_foreign_key "products", "brands"
-  add_foreign_key "products", "suppliers"
 end

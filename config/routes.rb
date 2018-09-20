@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   resources :imported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :imports,         only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :imports,         only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   resources :brands,          only: [:index, :new, :create, :edit, :update, :destroy]
 

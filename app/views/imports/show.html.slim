@@ -1,0 +1,36 @@
+.block
+  h1 SHOW IMPORT
+
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th User
+        th Price
+        th Supplier
+        th Action
+    tbody
+      tr
+        td = @import.id
+        td = @import.user_id
+        td = @import.total_price
+        td = @import.supplier&.name
+        td = link_to 'Edit', edit_import_path(@import)
+  h2 SHOW IMPORTED ITEMS
+
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th Quantity
+        th Price
+        th Product
+    tbody
+      - @import.imported_items.each do |item|
+        tr
+          td = item.id
+          td = item.quantity
+          td = item.unit_price
+          td = item.product.name
+
+

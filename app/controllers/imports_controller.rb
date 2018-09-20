@@ -41,6 +41,7 @@ class ImportsController < ApplicationController
       )
     else
       params.require(:import).permit(
+        :supplier_id,
         :user_id,
         imported_items_attributes: [
           :id,

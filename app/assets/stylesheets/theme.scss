@@ -7,6 +7,10 @@ body {
 
 main {
   padding: 15px;
+
+  li {
+    display: inline;
+  }
 }
 
 h1 {
@@ -39,4 +43,20 @@ p.button-new {
   padding: 20px 20px;
   background: #FFFFFF;
   box-shadow: 0 0 4px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.24);
+}
+
+li {
+  list-style: none;
+}
+
+li:last-child {
+  margin-left: 40px;
+}
+
+th {
+  text-align: center;
+}
+
+td {
+  text-align: center;
 }

@@ -8,17 +8,19 @@
       tr
         th Id
         th User
-        td Price
-        td Action
+        th Price
+        th Supplier        
+        th Action
     tbody
       - @imports.each do |import|
         tr
           td = import.id
           td = import.user.username
-          td = import.total_price
+          td = import.total_price 
+          td = import.supplier&.name
           td 
             ul.actions
-              - if can? :update, import         
+              - if can? :update, import
                 li = link_to 'Edit', edit_import_path(import)
-              - if can? :destroy, import  
-                li = link_to 'Delete',import_path(import), method: :delete
+              - if can? :show, import
+                li = link_to 'View', import_path(import)  

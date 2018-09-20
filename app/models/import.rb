@@ -1,6 +1,7 @@
 class Import < ApplicationRecord
   belongs_to :user
   has_many :imported_items
+  belongs_to :supplier
 
   accepts_nested_attributes_for :imported_items
 
