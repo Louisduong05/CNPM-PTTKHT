@@ -10,7 +10,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new params.require(:product).permit(:name, :price, :quantity, :country, :remarks, :supplier_id)
+    @product = Product.new params_product
     if @product.save 
       redirect_to products_path, notice:"Luu thanh cong"
     else
@@ -24,7 +24,7 @@ class ProductsController < ApplicationController
 
   def update
     @product = Product.find(params[:id])
-    if @product.update params.require(:product).permit(:name, :price, :quantity, :country, :remarks, :supplier_id)
+    if @product.update params_product
       redirect_to products_path, notice: "Cap nhat thanh cong"
     else
       render edit, notice:"Cap nhat that bai"
@@ -35,5 +35,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_path, notice: "Xoa thanh cong"
+  end
+
+  private
+
+  def params_product
+    params.require(:product).permit(:name, :price, :country, :remarks, :supplier_id)
   end
 end

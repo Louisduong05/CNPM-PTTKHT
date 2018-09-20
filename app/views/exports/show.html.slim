@@ -1,0 +1,27 @@
+.block
+  h1 SHOW EXPORT
+
+  table.table.table-striped
+    thead
+      tr
+        td Id
+        td User
+        td Price
+    tbody
+      tr
+        td = @export.id
+        td = @export.user_id
+        td = @export.total_price
+        td = link_to 'Edit', edit_export_path(@export)
+  h2 SHOW EXPORTED ITEMS
+
+  table.table.table-striped
+    tbody
+      - @export.exported_items.each do |item|
+        tr
+          td = item.id
+          td = item.quantity
+          td = item.unit_price
+          td = item.product.name
+
+

@@ -5,4 +5,5 @@ class Import < ApplicationRecord
   def name
     "IMPORT_#{id}"
   end
+
 end

@@ -11,17 +11,17 @@ class Ability
       can :index, Product
       can :index, Supplier
       can [:index, :new, :create, :edit, :update, :destroy], Export
-      can :index, ExportedItem
+      can [:index, :new, :create, :edit, :update, :destroy], ExportedItem
       can [:index, :new, :create, :edit, :update, :destroy], Import
-      can :index, ImportedItem
+      can [:index, :new, :create, :edit, :update, :destroy], ImportedItem
       can :index, Brand
     end
     if user.type == "Stocker"
       can [:index, :new, :create, :edit, :update, :destroy], Product
       can [:index, :new, :create, :edit, :update, :destroy], Supplier
-      can :index, Export
+      can [:index, :new, :create, :edit, :update, :destroy], Export
       can [:index, :new, :create, :edit, :update, :destroy], ExportedItem
-      can :index, Import
+      can [:index, :new, :create, :edit, :update, :destroy], Import
       can [:index, :new, :create, :edit, :update, :destroy], ImportedItem
       can :index, Brand
     end

@@ -49,6 +49,7 @@ gem 'simple_form'
 gem 'country_select', "~> 3.1.1"
 gem 'enumerize'
 gem 'cancancan'
+gem 'nested_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

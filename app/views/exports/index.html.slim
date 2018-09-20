@@ -15,10 +15,10 @@
         tr
           td = export.id
           td = export.user.username
-          td = export.price 
+          td = export.total_price 
           td 
             ul.actions
               - if can? :update, export
                 li = link_to 'Edit', edit_export_path(export)
-              - if can? :delete, export  
-                li = link_to 'Delete',export_path(export), method: :delete
+              - if can? :show, export
+                li = link_to 'View', export_path(export)  

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 
   resources :exported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :exports,         only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :exports,         only: [:index, :show, :new, :create, :edit, :update]
 
   resources :imported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
 
