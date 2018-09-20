@@ -9,7 +9,7 @@
         th Id
         th User
         th Price
-        //th Supplier        
+        th Customer        
         th Action
     tbody
       - @exports.each do |export|
@@ -17,7 +17,7 @@
           td = export.id
           td = export.user.username
           td = export.total_price 
-          //td = export.supplier&.name
+          td = export.customer&.name
           td 
             ul.actions
               - if can? :update, export

@@ -1,6 +1,7 @@
 class Export < ApplicationRecord
   belongs_to :user
   has_many :exported_items
+  belongs_to :customer
 
   accepts_nested_attributes_for :exported_items
 

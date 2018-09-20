@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_20_073346) do
+ActiveRecord::Schema.define(version: 2018_09_20_081059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2018_09_20_073346) do
   create_table "brands", force: :cascade do |t|
     t.string "name"
     t.string "country"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "phone"
+    t.string "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "exported_items", force: :cascade do |t|
@@ -33,6 +41,8 @@ ActiveRecord::Schema.define(version: 2018_09_20_073346) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
+    t.bigint "customer_id"
+    t.index ["customer_id"], name: "index_exports_on_customer_id"
     t.index ["user_id"], name: "index_exports_on_user_id"
   end
 
@@ -92,6 +102,7 @@ ActiveRecord::Schema.define(version: 2018_09_20_073346) do
 
   add_foreign_key "exported_items", "exports"
   add_foreign_key "exported_items", "products"
+  add_foreign_key "exports", "customers"
   add_foreign_key "exports", "users"
   add_foreign_key "imported_items", "imports"
   add_foreign_key "imported_items", "products"

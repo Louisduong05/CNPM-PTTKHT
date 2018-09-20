@@ -1,0 +1,32 @@
+.block  
+  h1 Customer
+  - if can? :create, Customer
+    p.button-new = link_to 'New', new_customer_path
+
+  table.table.table-striped
+    thead
+      tr
+        th ID
+        th Name
+        th Phone
+        th Adress
+        th Action
+    tbody
+      - @customers.each do |customer|
+        tr
+          td  
+            = customer.id
+          td 
+            = customer.name
+          td
+            = customer.phone
+          td 
+            = customer.address  
+          td
+            ul.actions 
+              - if can? :update, customer
+                li = link_to 'Edit', edit_customer_path(customer)
+              - if can? :destroy, customer               
+                li = link_to 'Delete', customer_path(customer), method: :delete
+
+            

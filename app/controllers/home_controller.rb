@@ -5,6 +5,6 @@ class HomeController < ApplicationController
     @brands = Brand.all.length
     @exports = Export.all.length
     @imports = Import.all.length
-    @users = User.all.length
+    @customers = Customer.all.length
   end
 end

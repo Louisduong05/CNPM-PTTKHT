@@ -19,4 +19,6 @@ Rails.application.routes.draw do
 
   resources :accounts,        only: [:index, :show, :new, :create, :edit, :update, :destroy]
 
+  resources :customers,       only: [:index, :new, :create, :edit, :update, :destroy]
+
 end
