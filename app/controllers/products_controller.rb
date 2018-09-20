@@ -1,16 +1,11 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
   
-  def index
-    @products = Product.all
-  end
+  def index; end
 
-  def new
-    @product = Product.new
-  end
+  def new; end
 
   def create
-    @product = Product.new params_product
     if @product.save 
       redirect_to products_path, notice:"Luu thanh cong"
     else
@@ -18,13 +13,10 @@ class ProductsController < ApplicationController
     end
   end
 
-  def edit
-    @product = Product.find(params[:id])
-  end
+  def edit;end
 
   def update
-    @product = Product.find(params[:id])
-    if @product.update params_product
+    if @product.update product_params
       redirect_to products_path, notice: "Cap nhat thanh cong"
     else
       render edit, notice:"Cap nhat that bai"
@@ -32,14 +24,13 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     @product.destroy
     redirect_to products_path, notice: "Xoa thanh cong"
   end
 
   private
 
-  def params_product
-    params.require(:product).permit(:name, :price, :country, :remarks, :supplier_id)
+  def product_params
+    params.require(:product).permit(:name, :price, :country, :remarks, :supplier_id, :brand_id)
   end
 end

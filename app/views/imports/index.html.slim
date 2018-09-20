@@ -8,14 +8,14 @@
       tr
         th Id
         th User
-        th Price
+        td Price
         td Action
     tbody
       - @imports.each do |import|
         tr
           td = import.id
           td = import.user.username
-          td = import.price 
+          td = import.total_price
           td 
             ul.actions
               - if can? :update, import         

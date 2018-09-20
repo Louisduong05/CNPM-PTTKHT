@@ -1,17 +1,11 @@
 class AccountsController < ApplicationController
-  load_and_authorize_resource :user
+  load_and_authorize_resource class: "User" 
 
-  def index
-    @accounts = User.all
-  end
+  def index; end
 
-  def new
-    @account = User.new
-  end
+  def new; end
 
   def create
-    @account = User.new account_params
-
     if @account.save
       redirect_to accounts_path, notice: "Luu thanh cong"
     else
@@ -19,17 +13,11 @@ class AccountsController < ApplicationController
     end 
   end
 
-  def show
-    @account = User.find(params[:id])
-  end
+  def show; end
 
-  def edit
-    @account = User.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @account = User.find(params[:id])
-
     if @account.update account_params
       redirect_to accounts_path, notice: "Cap nhat thanh cong"
     else
@@ -38,7 +26,6 @@ class AccountsController < ApplicationController
   end
 
   def destroy
-    @account = User.find(params[:id])
     @account.destroy
     redirect_to accounts_path, notice: "Xoa thanh cong"
   end

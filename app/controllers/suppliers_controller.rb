@@ -1,17 +1,11 @@
 class SuppliersController < ApplicationController
   load_and_authorize_resource
   
-  def index
-    @suppliers = Supplier.all
-  end
+  def index; end
   
-  def new
-    @supplier = Supplier.new
-  end
+  def new; end
   
   def create
-    @supplier = Supplier.new supplier_params
-
     if @supplier.save
       redirect_to suppliers_url, notice: "Save successfully"
     else
@@ -19,13 +13,9 @@ class SuppliersController < ApplicationController
     end
   end
 
-  def edit
-    @supplier = Supplier.find(params[:id])  
-  end
+  def edit; end
 
   def update
-    @supplier = Supplier.find(params[:id]) 
-
     if @supplier.update supplier_params
       redirect_to suppliers_path, notice: "Supplier has been updated successfully"
     else
@@ -34,14 +24,13 @@ class SuppliersController < ApplicationController
   end
 
   def destroy
-    @supplier = Supplier.find(params[:id]) 
-    @supplier.destroy
+  @supplier.destroy
     redirect_to suppliers_path, notice: "Supplier has been deleted successfully"
   end
 
   private
 
   def supplier_params
-    params.require(:supplier).permit(:name)
+    params.require(:supplier).permit(:name, :phone, :address)
   end
 end

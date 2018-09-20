@@ -7,6 +7,10 @@ class ImportedItem < ApplicationRecord
 
   after_create :import_product
 
+  def total_price
+    quantity * unit_price
+  end
+
   def import_product
     product.quantity = product.quantity + quantity
     product.save
