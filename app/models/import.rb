@@ -2,6 +2,8 @@ class Import < ApplicationRecord
   belongs_to :user
   has_many :imported_items
 
+  accepts_nested_attributes_for :imported_items
+
   def name
     "IMPORT_#{id}"
   end
