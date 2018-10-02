@@ -1,7 +1,10 @@
 class ProductsController < ApplicationController
   load_and_authorize_resource
   
-  def index; end
+  def index
+    @product_filter = ProductFilter.new(@products, product_filter_params)
+    @products = @product_filter.result
+  end
 
   def new; end
 
@@ -32,5 +35,16 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:name, :price, :country, :remarks, :supplier_id, :brand_id)
+  end
+
+  def product_filter_params
+    if params[:product_filter].nil?
+      return {} 
+    else  
+      params.require(:product_filter).permit(
+        :keyword,
+        :brand_id
+      )
+    end  
   end
 end

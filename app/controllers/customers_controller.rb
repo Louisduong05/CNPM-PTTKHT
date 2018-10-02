@@ -1,7 +1,10 @@
 class CustomersController < ApplicationController
   load_and_authorize_resource
   
-  def index; end
+  def index
+    @customer_filter = CustomerFilter.new(@customers, customer_filter_params)
+    @customers = @customer_filter.result
+  end
   
   def new; end
   
@@ -24,7 +27,7 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-  @customer.destroy
+    @customer.destroy
     redirect_to customers_path, notice: "customer has been deleted successfully"
   end
 
@@ -32,5 +35,11 @@ class CustomersController < ApplicationController
 
   def customer_params
     params.require(:customer).permit(:name, :phone, :address)
+  end
+
+  def customer_filter_params
+    return {} if params[:customer_filter].nil?
+
+    params.require(:customer_filter).permit(:keyword)
   end
 end

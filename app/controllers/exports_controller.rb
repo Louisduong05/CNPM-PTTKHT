@@ -1,7 +1,11 @@
 class ExportsController < ApplicationController
   load_and_authorize_resource
   
-  def index; end
+  def index
+    @export_filter = ExportFilter.new(@exports, export_filter_params)
+    @exports = @export_filter.result
+    @export = Export.new
+  end
 
   def new; end
 
@@ -57,5 +61,11 @@ class ExportsController < ApplicationController
         ]
       )
     end
+  end
+
+  def export_filter_params
+    return {} if params[:export_filter].nil?
+
+    params.require(:export_filter).permit(:user_id)
   end
 end

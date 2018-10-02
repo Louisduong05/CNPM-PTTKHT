@@ -1,3 +1,9 @@
+/ = form_tag(suppliers_path, method: :get) do
+/   |  name 
+/   = text_field_tag :keyword, params[:keyword], name: "supplier_filter[keyword]"
+/   = submit_tag 'Search', name: nil
+= render 'search'  
+
 .block  
   h1 SUPPLIER
   - if can? :create, Supplier

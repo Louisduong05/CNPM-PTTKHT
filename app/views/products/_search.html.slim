@@ -1,0 +1,4 @@
+= simple_form_for @product_filter, url: '', method: :get do |f|
+  = f.input :keyword, label: false
+  = f.input :brand_id, collection: Brand.all
+  = f.button :submit, 'Search'
