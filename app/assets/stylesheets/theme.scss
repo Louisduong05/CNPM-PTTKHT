@@ -60,3 +60,31 @@ th {
 td {
   text-align: center;
 }
+
+.notice {
+  margin-top: 10px;
+  text-align: center;
+  line-height: 50px;
+  background-color: #ff8080;
+  border: 1px solid #ff6666;
+  border-radius: 10px;
+
+  p {
+    color: #fff;
+    font-size: 15px;
+  }
+}
+
+.alert {
+  margin-top: 10px;
+  text-align: center;
+  line-height: 50px;
+  background-color: #85e085;
+  border: 1px solid #70db70;
+  border-radius: 10px;
+
+  p {
+    color: #fff;
+    font-size: 15px;
+  }
+}

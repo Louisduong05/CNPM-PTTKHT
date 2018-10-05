@@ -34,6 +34,7 @@ class ImportsController < ApplicationController
   def import_params
     if action_name == "create"
       params.require(:import).permit(
+        :supplier_id,
         :user_id,
         imported_items_attributes: [
           :id,

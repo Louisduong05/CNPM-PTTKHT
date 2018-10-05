@@ -11,3 +11,25 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+
+(function(){
+   var flashDurationInSeconds = 5;
+   var flashContainerId = 'notice';
+
+   function removeFlashMessages() {
+     $('#' + flashContainerId).remove();
+   }
+
+   setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
+}).call(this);
+
+(function(){
+   var flashDurationInSeconds = 5;
+   var flashContainerId = 'alert';
+
+   function removeFlashMessages() {
+     $('#' + flashContainerId).remove();
+   }
+
+   setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
+}).call(this);

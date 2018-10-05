@@ -42,6 +42,7 @@ class ExportsController < ApplicationController
     if action_name == "create"
       params.require(:export).permit(
         :user_id,
+        :customer_id,
         exported_items_attributes: [
           :id,
           :quantity,
@@ -53,6 +54,7 @@ class ExportsController < ApplicationController
     else
       params.require(:export).permit(
         :user_id,
+        :customer_id,
         exported_items_attributes: [
           :id,
           :product_id,
