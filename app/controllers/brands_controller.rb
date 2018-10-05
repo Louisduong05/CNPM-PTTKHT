@@ -1,30 +1,22 @@
 class BrandsController < ApplicationController
   load_and_authorize_resource
 
-  def index
-    @brands = Brand.all
-  end
+  def index; end
 
-  def new
-    @brand = Brand.new
-  end
+  def new; end
 
   def create
-    @brand = Brand.new params.require(:brand).permit(:name, :country)
-    if @brand.save
+    if @brand.save brand_params
       redirect_to brands_path, notice: "Luu thanh cong"
     else
       render 'new'
     end 
   end
 
-  def edit
-    @brand = Brand.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @brand = Brand.find(params[:id])
-    if @brand.update params.require(:brand).permit(:name, :country)
+    if @brand.update brand_params
       redirect_to brands_path, notice: "Cap nhat thanh cong"
     else
       render 'edit', notice: "Cap nhat that bai"
@@ -32,8 +24,13 @@ class BrandsController < ApplicationController
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
     @brand.destroy
     redirect_to brands_path, notice: "Xoa thanh cong"
+  end
+
+  private
+
+  def brand_params
+    params.require(:brand).permit(:name, :country)    
   end
 end
