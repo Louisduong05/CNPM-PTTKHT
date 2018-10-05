@@ -1,12 +1,16 @@
 class ImportsController < ApplicationController
   load_and_authorize_resource
   
-  def indim; end
+  def index
+    @import_filter = ImportFilter.new(@imports, import_filter_params)
+    @imports = @import_filter.result
+    @import = Import.new
+  end
 
   def new; end
 
   def create
-    if @import.save
+    if @import.save import_params
       redirect_to imports_path, notice: "Luu thanh cong"
     else
       render 'new'
@@ -51,5 +55,11 @@ class ImportsController < ApplicationController
         ]
       )
     end
+  end
+
+  def import_filter_params
+    return {} if params[:import_filter].nil?
+
+    params.require(:import_filter).permit(:user_id)
   end
 end
