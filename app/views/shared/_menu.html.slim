@@ -16,4 +16,20 @@ section.shared-menu
           li.didiver[role="separator"]
           - if user_signed_in?
             li = link_to 'Logout', destroy_user_session_path, method: :delete
-          li.didiver[role="separator"]   
+          li.didiver[role="separator"]
+    .notification
+      .dropdown style=("float: right; padding: 13px") 
+        a#dropdownMenu1 aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" style=("float: left") 
+          i.fa.fa-bell-o style=("font-size: 20px; float: left; color: black") 
+        span.badge.badge-danger 1
+        ul.dropdown-menu.dropdown-menu-left.pull-right aria-labelledby="dropdownMenu1" role="menu" 
+          li role="presentation" 
+            a.dropdown-menu-header href="#"  Notifications
+          li role="presentation" 
+            a.dropdown-menu-header href="#"  Notifications
+          li role="presentation" 
+            a.dropdown-menu-header href="#"  Notifications
+          li role="presentation" 
+            a.dropdown-menu-header href="#"  Notifications
+
+           

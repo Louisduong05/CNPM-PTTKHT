@@ -1,6 +1,6 @@
 = simple_form_for @product do |f|
   = f.input :name
-  = f.input :price
+  = f.input :original_price, readonly: true
   = f.input :quantity, readonly: true
   = f.association :brand
   = f.input :remarks

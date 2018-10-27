@@ -9,7 +9,7 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body.layouts-application class=page_class
     = render 'shared/menu'
-    = render 'shared/sidebar'  
+    = render 'shared/sidebar'
     - if !!notice
       #notice.notice  
         p = notice 
@@ -17,3 +17,4 @@ html
       #alert.alert  
         p = alert 
     main = yield
+    

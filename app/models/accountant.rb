@@ -1,1 +1,0 @@
-class Accountant < User; end

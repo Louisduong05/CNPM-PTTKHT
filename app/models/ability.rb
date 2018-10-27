@@ -7,22 +7,20 @@ class Ability
     if user.type == "Admin"
       can :manage, :all
     end
-    if user.type == "Accountant"
+    if user.type == "Exporter"
       can :index, Product
       can :index, Supplier
-      can [:index, :new, :create, :edit, :update, :destroy], Export
-      can [:index, :new, :create, :edit, :update, :destroy], ExportedItem
-      can [:index, :new, :create, :edit, :update, :destroy], Import
-      can [:index, :new, :create, :edit, :update, :destroy], ImportedItem
+      can :index, Customer
+      can [:index, :new, :create, :edit, :update, :destroy, :show], Export
+      can [:index, :new, :create, :edit, :update, :destroy, :show], ExportedItem
       can :index, Brand
     end
-    if user.type == "Stocker"
-      can [:index, :new, :create, :edit, :update, :destroy], Product
-      can [:index, :new, :create, :edit, :update, :destroy], Supplier
-      can [:index, :new, :create, :edit, :update, :destroy], Export
-      can [:index, :new, :create, :edit, :update, :destroy], ExportedItem
-      can [:index, :new, :create, :edit, :update, :destroy], Import
-      can [:index, :new, :create, :edit, :update, :destroy], ImportedItem
+    if user.type == "Importer"
+      can :index, Product
+      can :index, Supplier
+      can :index, Customer
+      can [:index, :new, :create, :edit, :update, :destroy, :show], Import
+      can [:index, :new, :create, :edit, :update, :destroy, :show], ImportedItem
       can :index, Brand
     end
     # Define abilities for the passed in user here. For example:

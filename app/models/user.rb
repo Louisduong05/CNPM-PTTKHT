@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :exports
   has_many :imports 
 
-  enumerize :type, in: ["User", "Admin", "Accountant", "Stocker"], default: "User"
+  enumerize :type, in: ["User", "Admin", "Importer", "Exporter"], default: "User"
 
   def name
     "#{firstname}"

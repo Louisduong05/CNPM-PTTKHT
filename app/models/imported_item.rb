@@ -12,6 +12,7 @@ class ImportedItem < ApplicationRecord
   end
 
   def import_product
+    product.original_price = unit_price
     product.quantity = product.quantity + quantity
     product.save
   end
