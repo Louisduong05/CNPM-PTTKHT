@@ -1,15 +1,15 @@
 .container
   .wrapper
-    = image_tag("shared/logo.png")
     = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = image_tag("shared/logo.png")
       .field
         = f.input :email, autofocus: true, autocomplete: "email"
       .field
         = f.input :password, autocomplete: "current-password"
-      .actions
-        = f.submit "Log in"
       - if devise_mapping.rememberable?
         .field
           = f.check_box :remember_me
           = f.label :remember_me
-    = render "devise/shared/links"
+          = render "devise/shared/links"
+      .actions
+        = f.submit "Log in"

@@ -5,12 +5,6 @@ class ExportsController < ApplicationController
     @export_filter = ExportFilter.new(@exports, export_filter_params)
     @exports = @export_filter.result
     @export = Export.new
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render template: 'exports/report', pdf: 'Report'
-      end
-    end
   end
 
   def new; end
@@ -29,10 +23,6 @@ class ExportsController < ApplicationController
     else
       render 'new'
     end 
-  end
-
-  def show
-    @export = Export.find(params[:id])
   end
 
   def edit; end

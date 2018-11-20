@@ -1,3 +1,4 @@
+- total_notifications = current_user.notifications.length
 section.shared-menu
   .pull-right
     .user-info
@@ -21,15 +22,12 @@ section.shared-menu
       .dropdown style=("float: right; padding: 13px") 
         a#dropdownMenu1 aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" style=("float: left") 
           i.fa.fa-bell-o style=("font-size: 20px; float: left; color: black") 
-        span.badge.badge-danger 1
-        ul.dropdown-menu.dropdown-menu-left.pull-right aria-labelledby="dropdownMenu1" role="menu" 
-          li role="presentation" 
-            a.dropdown-menu-header href="#"  Notifications
-          li role="presentation" 
-            a.dropdown-menu-header href="#"  Notifications
-          li role="presentation" 
-            a.dropdown-menu-header href="#"  Notifications
-          li role="presentation" 
-            a.dropdown-menu-header href="#"  Notifications
+        span.badge.badge-danger = total_notifications
+        - if (total_notifications > 0 )
+          ul#notifications.dropdown-menu.dropdown-menu-left.pull-right aria-labelledby="dropdownMenu1" role="menu"
+            - current_user.notifications.each do |n|
+              li.notif role="presentation" 
+                a.dropdown-menu-header href=n.link
+                  = n.message  
 
            

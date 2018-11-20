@@ -21,4 +21,11 @@ Rails.application.routes.draw do
 
   resources :customers,       only: [:index, :new, :create, :edit, :update, :destroy]
 
+  resources :notifications,       only: [:index] do 
+    collection do 
+      patch :seen
+    end
+  end
+
+
 end

@@ -6,7 +6,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable     
 
   has_many :exports
-  has_many :imports 
+  has_many :imports
+  has_many :notifications 
 
   enumerize :type, in: ["User", "Admin", "Importer", "Exporter"], default: "User"
 
