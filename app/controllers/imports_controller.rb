@@ -17,7 +17,14 @@ class ImportsController < ApplicationController
     end 
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render template: 'imports/report', pdf: 'Report'
+      end
+    end
+  end
 
   def edit; end
 

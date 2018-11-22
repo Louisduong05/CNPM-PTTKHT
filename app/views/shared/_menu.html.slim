@@ -1,4 +1,6 @@
-- total_notifications = current_user.notifications.length
+- notifications = current_user.notifications
+- total_notifications = notifications.length
+- total_pending_notifications = notifications.where(read: false).length
 section.shared-menu
   .pull-right
     .user-info
@@ -18,16 +20,17 @@ section.shared-menu
           - if user_signed_in?
             li = link_to 'Logout', destroy_user_session_path, method: :delete
           li.didiver[role="separator"]
-    .notification
+    #notification.notification
       .dropdown style=("float: right; padding: 13px") 
-        a#dropdownMenu1 aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" style=("float: left") 
+        a#dropdownMenu aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" style=("float: left") 
           i.fa.fa-bell-o style=("font-size: 20px; float: left; color: black") 
-        span.badge.badge-danger = total_notifications
+        span.badge.badge-danger = total_pending_notifications
         - if (total_notifications > 0 )
-          ul#notifications.dropdown-menu.dropdown-menu-left.pull-right aria-labelledby="dropdownMenu1" role="menu"
-            - current_user.notifications.each do |n|
-              li.notif role="presentation" 
+          ul.dropdown-menu aria-labelledby="dropdownMenu1" role="menu"
+            - notifications.each do |n|
+              li role="presentation" class="#{n.read ? "read" : "  "}"
                 a.dropdown-menu-header href=n.link
                   = n.message  
+              
 
            

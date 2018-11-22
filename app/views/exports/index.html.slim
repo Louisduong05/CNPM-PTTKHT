@@ -22,8 +22,6 @@
           td = export.customer&.name
           td 
             ul.actions
-              - if can? :update, export
-                li = link_to 'Edit', edit_export_path(export)
               - if can? :show, export
                 li = link_to 'View', export_path(export)
                   

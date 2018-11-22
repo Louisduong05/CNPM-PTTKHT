@@ -3,17 +3,17 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :products,        only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :products,        only: [:index, :new, :create, :edit, :update, :destroy, :show]
 
   resources :suppliers,       only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :exported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :exported_items,  only: [:index, :new, :create]
 
-  resources :exports,         only: [:index, :show, :new, :create, :edit, :update]
+  resources :exports,         only: [:index, :show, :new, :create]
 
-  resources :imported_items,  only: [:index, :new, :create, :edit, :update, :destroy]
+  resources :imported_items,  only: [:index, :new, :create]
 
-  resources :imports,         only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :imports,         only: [:index, :show, :new, :create]
 
   resources :brands,          only: [:index, :new, :create, :edit, :update, :destroy]
 

@@ -11,6 +11,7 @@ class ExportsController < ApplicationController
 
   def show
     respond_to do |format|
+      format.html
       format.pdf do
         render template: 'exports/report', pdf: 'Report'
       end
@@ -43,30 +44,24 @@ class ExportsController < ApplicationController
   private
 
   def export_params
-    if action_name == "create"
-      params.require(:export).permit(
-        :user_id,
-        :customer_id,
-        exported_items_attributes: [
-          :id,
-          :quantity,
-          :product_id,
-          :unit_price,
-          :_destroy
-        ]
-      )
-    else
-      params.require(:export).permit(
-        :user_id,
-        :customer_id,
-        exported_items_attributes: [
-          :id,
-          :product_id,
-          :unit_price,
-          :_destroy
-        ]
-      )
+    data = params.require(:export).permit(
+      :customer_id,
+      exported_items_attributes: [
+        :id,
+        :quantity,
+        :product_id,
+        :unit_price,
+        :_destroy
+      ]
+    )
+
+    if action_name == "update"
+      data.delete(:quantity)
     end
+
+    data[:user_id] = current_user.id
+
+    data
   end
 
   def export_filter_params

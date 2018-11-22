@@ -11,17 +11,19 @@ class Ability
       can :index, Product
       can :index, Supplier
       can :index, Customer
-      can [:index, :new, :create, :edit, :update, :destroy, :show], Export
-      can [:index, :new, :create, :edit, :update, :destroy, :show], ExportedItem
+      can [:index, :new, :create, :show], Export
+      can [:index, :new, :create, :show], ExportedItem
       can :index, Brand
+      can [:index, :seen], Notification
     end
     if user.type == "Importer"
-      can :index, Product
+      can [:index, :show], Product
       can :index, Supplier
       can :index, Customer
-      can [:index, :new, :create, :edit, :update, :destroy, :show], Import
-      can [:index, :new, :create, :edit, :update, :destroy, :show], ImportedItem
+      can [:index, :new, :create, :show], Import
+      can [:index, :new, :create, :show], ImportedItem
       can :index, Brand
+      can [:index, :seen], Notification
     end
     # Define abilities for the passed in user here. For example:
     #

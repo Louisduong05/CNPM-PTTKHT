@@ -74,7 +74,6 @@ section.shared-menu {
     position: absolute;
     top: 40px;
     right: 228px;
-    width: 20px;
 
     .dropdown {
       ul {
@@ -101,6 +100,7 @@ section.shared-menu {
       background: #f7f9fe;
       font-weight: bold;
       border-bottom: 1px solid #e3e3e3;
+      display: block;
     }
     .dropdown-menu > li a {
       padding: 10px 20px;

@@ -8,14 +8,12 @@
         th User
         th Price
         th Customer
-        th Action
     tbody
       tr
         td = @export.id
         td = @export.user_id
         td = @export.total_price
         td = @export.customer&.name
-        td = link_to 'Edit', edit_export_path(@export)
   h2 SHOW EXPORTED ITEMS
 
   table.table.table-striped
@@ -30,7 +28,7 @@
         tr
           td = item.id
           td = item.quantity
-          td = item.unit_price
+          td = item.product.unit_price_with_tax
           td = item.product.name
 
 

@@ -1,5 +1,4 @@
-= simple_nested_form_for @export do |f|
-  = f.association :user
+= simple_nested_form_for export do |f|
   = f.association :customer
   = f.fields_for :exported_items do |e|
     = e.association :product

@@ -1,5 +1,5 @@
-.block  
-  h1 SHOW EXPORT
+.block
+  h1 SHOW IMPORT
 
   table.table.table-striped
     thead
@@ -7,14 +7,15 @@
         th Id
         th User
         th Price
-        th Customer
+        th Supplier
+        th Action
     tbody
       tr
-        td = @export.id
-        td = @export.user_id
-        td = @export.total_price
-        td = @export.customer&.name
-  h2 SHOW EXPORTED ITEMS
+        td = @import.id
+        td = @import.user_id
+        td = @import.total_price
+        td = @import.supplier&.name
+  h2 SHOW IMPORTED ITEMS
 
   table.table.table-striped
     thead
@@ -24,10 +25,9 @@
         th Price
         th Product
     tbody
-      - @export.exported_items.each do |item|
+      - @import.imported_items.each do |item|
         tr
           td = item.id
           td = item.quantity
           td = item.unit_price
           td = item.product.name
-                  

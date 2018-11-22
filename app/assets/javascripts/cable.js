@@ -34,17 +34,3 @@
    setTimeout(removeFlashMessages, flashDurationInSeconds * 1000);
 }).call(this);
 
-(function() {
-  $('#notifications').on("scroll", function() {             
-     $('.notif').each(function () {
-        if( $(this).next().offset() ) {
-           console.log("current: " + $(this).offset().top);
-           console.log("next: " + $(this).next().offset().top);
-           if( $(this).offset().top <= $(this).next().offset().top ) {
-              $(this).find( ".notif" ).css( "color", "red" );
-              //return;
-           }
-        }
-     });
-  });
-}).call(this);

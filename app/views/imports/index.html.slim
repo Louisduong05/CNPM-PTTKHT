@@ -22,7 +22,5 @@
           td = import.supplier&.name
           td 
             ul.actions
-              - if can? :update, import
-                li = link_to 'Edit', edit_import_path(import)
               - if can? :show, import
                 li = link_to 'View', import_path(import)  
