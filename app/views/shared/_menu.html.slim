@@ -1,4 +1,4 @@
-- notifications = current_user.notifications
+- notifications = current_user.notifications.order(id: :desc)
 - total_notifications = notifications.length
 - total_pending_notifications = notifications.where(read: false).length
 section.shared-menu
@@ -21,16 +21,20 @@ section.shared-menu
             li = link_to 'Logout', destroy_user_session_path, method: :delete
           li.didiver[role="separator"]
     #notification.notification
-      .dropdown style=("float: right; padding: 13px") 
-        a#dropdownMenu aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" style=("float: left") 
-          i.fa.fa-bell-o style=("font-size: 20px; float: left; color: black") 
+      .dropdown
+        a#dropdownMenu aria-expanded="true" data-target="#" data-toggle="dropdown" href="#" onclick=("return false;") role="button" 
+          i.fa.fa-bell-o
         span.badge.badge-danger = total_pending_notifications
         - if (total_notifications > 0 )
-          ul.dropdown-menu aria-labelledby="dropdownMenu1" role="menu"
+          ul.dropdown-menu role="menu"
             - notifications.each do |n|
-              li role="presentation" class="#{n.read ? "read" : "  "}"
-                a.dropdown-menu-header href=n.link
-                  = n.message  
+              li class="#{n.read ? "read" : ""}"
+                a.dropdown-menu-header href="#{n.link}?n=#{n.id}"
+                  = n.message
+              li.didiver[role="separator"]
+            li 
+              a#mark-all-as-read href="#" 
+                | Mark all as read
               
 
            

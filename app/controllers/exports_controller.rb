@@ -50,7 +50,6 @@ class ExportsController < ApplicationController
         :id,
         :quantity,
         :product_id,
-        :unit_price,
         :_destroy
       ]
     )
