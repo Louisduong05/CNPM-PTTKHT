@@ -7,7 +7,9 @@ class ExportsController < ApplicationController
     @export = Export.new
   end
 
-  def new; end
+  def new
+    @export.exported_items.new
+  end
 
   def show
     respond_to do |format|

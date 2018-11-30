@@ -7,7 +7,9 @@ class ImportsController < ApplicationController
     @import = Import.new
   end
 
-  def new; end
+  def new
+    @import.imported_items.new
+  end
 
   def create
     if @import.save import_params
