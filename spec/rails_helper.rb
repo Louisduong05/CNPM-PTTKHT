@@ -73,6 +73,6 @@ RSpec.configure do |config|
     Warden.test_reset!
   end
 
-  Capybara.current_session.driver.browser.manage.window.resize_to(2_500, 2_500)
+  Capybara.current_session.driver.browser.manage.window.maximize
   Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 end
