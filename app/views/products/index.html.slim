@@ -42,3 +42,4 @@
                 li = link_to 'Edit', edit_product_path(product)
               - if can? :destroy, product 
                 li = link_to 'Delete',product_path(product), method: :delete
+  = will_paginate @products, renderer: BootstrapPagination::Rails

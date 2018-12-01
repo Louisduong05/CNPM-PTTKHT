@@ -1,10 +1,3 @@
-require 'lib/login'
-require 'lib/customer'
-require 'lib/supplier'
-require 'lib/brand'
-require 'lib/product'
-require 'lib/export'
-
 describe "Table", type: :feature do
   it "create value table" do
     login_admin("admin@gmail.com", "password1")
@@ -14,5 +7,6 @@ describe "Table", type: :feature do
     create_a_brand()
     create_a_product()
     create_a_export()
+    edit_a_product()
   end
 end

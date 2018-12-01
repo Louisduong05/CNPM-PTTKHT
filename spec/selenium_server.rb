@@ -7,7 +7,7 @@ if ENV["SLOW"].present?
       alias old_execute execute
 
       def execute(*args)
-        sleep(0.1)
+        sleep(ENV["SLOW"].to_f/10)
         old_execute(*args)
       end
     end

@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   
   def index
     @product_filter = ProductFilter.new(@products, product_filter_params)
-    @products = @product_filter.result
+    @products = @product_filter.result.paginate(:page => params[:page], :per_page => 3)
   end
 
   def new; end
