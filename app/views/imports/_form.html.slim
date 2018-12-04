@@ -1,5 +1,4 @@
 = simple_nested_form_for @import do |f|
-  = f.association :user
   = f.association :supplier
   = f.fields_for :imported_items do |e|
     = e.association :product

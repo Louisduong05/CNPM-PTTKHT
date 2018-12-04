@@ -41,30 +41,23 @@ class ImportsController < ApplicationController
   private
 
   def import_params
-    if action_name == "create"
-      params.require(:import).permit(
-        :supplier_id,
-        :user_id,
-        imported_items_attributes: [
-          :id,
-          :quantity,
-          :product_id,
-          :unit_price,
-          :_destroy
-        ]
-      )
-    else
-      params.require(:import).permit(
-        :supplier_id,
-        :user_id,
-        imported_items_attributes: [
-          :id,
-          :product_id,
-          :unit_price,
-          :_destroy
-        ]
-      )
+    data = params.require(:import).permit(
+      :supplier_id,
+      imported_items_attributes: [
+        :id,
+        :quantity,
+        :product_id,
+        :unit_price,
+        :_destroy
+      ]
+    )
+    if action_name == "update"
+    data.delete(:quantity)
     end
+
+    data[:user_id] = current_user.id
+
+    data
   end
 
   def import_filter_params
