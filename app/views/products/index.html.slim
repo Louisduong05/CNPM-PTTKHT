@@ -16,6 +16,7 @@
         th Brand
         th Country
         th Remarks
+        th image
         th Action
     tbody
       - @products.each do |product|
@@ -35,7 +36,9 @@
           td 
             = product.brand&.country
           td
-            = product.remarks    
+            = product.remarks
+          td
+            = image_tag product.image.url(:thumb), :style => "max-width: 100px; max-height: 100px;" 
           td
             ul.actions
               - if can? :update, product 

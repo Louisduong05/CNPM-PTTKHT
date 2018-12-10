@@ -2,6 +2,7 @@ require 'rails_helper'
 
 feature "Manage Supplier" do
   let!(:admin) { create(:admin) }
+  let!(:supplier) { create(:supplier) }
 
   before do 
     login_as(admin)
@@ -20,7 +21,7 @@ feature "Manage Supplier" do
   scenario "Edit a supplier" do
     visit edit_supplier_path(supplier)
     within("#edit_supplier_1") do
-      ill_in 'Ten Cong Ty ', with: 'Thach da sua'
+      fill_in 'Ten Cong Ty ', with: 'Thach da sua'
       fill_in 'Phone', with: '+8493274628734 44'
       fill_in 'Address', with: 'Address 1 da sua'
     end

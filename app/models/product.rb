@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/:style/missing.png"
   has_many :exported_items
   has_many :imported_items
   belongs_to :brand
@@ -6,6 +7,8 @@ class Product < ApplicationRecord
 	validates :name,	presence: true
 	validates :original_price,	presence: true
 	validates :quantity,	presence: false
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
   def tax
     0.12
   end
