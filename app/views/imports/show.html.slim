@@ -23,6 +23,7 @@
         th Quantity
         th Price
         th Product
+        th Status
     tbody
       - @import.imported_items.each do |item|
         tr
@@ -30,5 +31,13 @@
           td = item.quantity
           td = item.unit_price
           td = item.product.name
+          td = item.status
+    tfoot
+      tr
+        td
+          ul
+            - if can? :show, @import
+              li = link_to 'PDF', import_path(@import, :format => :pdf), target: "_blank"
+
 
 

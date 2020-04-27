@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :exports
   has_many :imports
   has_many :notifications 
+  has_many :product_items
 
   enumerize :type, in: ["User", "Admin", "Importer", "Exporter"], default: "User"
 

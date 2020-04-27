@@ -3,7 +3,7 @@ class Import < ApplicationRecord
   has_many :imported_items
   belongs_to :supplier
 
-  accepts_nested_attributes_for :imported_items
+  accepts_nested_attributes_for :imported_items, allow_destroy: true
 
   def name
     "IMPORT_#{id}"

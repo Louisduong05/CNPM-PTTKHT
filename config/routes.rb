@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  root 'home#index'
+  root "home#index"
 
   resources :products,        only: [:index, :new, :create, :edit, :update, :destroy, :show]
 
   resources :suppliers,       only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :exported_items,  only: [:index, :new, :create]
+  resources :exported_items,  only: [:index, :edit, :update]
 
   resources :exports,         only: [:index, :show, :new, :create]
 
-  resources :imported_items,  only: [:index, :new, :create]
+  resources :imported_items,  only: [:index, :edit, :update]
 
   resources :imports,         only: [:index, :show, :new, :create]
 
@@ -21,10 +21,16 @@ Rails.application.routes.draw do
 
   resources :customers,       only: [:index, :new, :create, :edit, :update, :destroy]
 
-  resources :notifications,       only: [:index] do 
+  resources :warehouses,      only: [:index]
+
+  resources :notifications,   only: [:index] do 
     collection do 
       patch :seen
     end
+  end
+
+  namespace :api do
+    resources :warehouses,    only: [:index]
   end
 
 

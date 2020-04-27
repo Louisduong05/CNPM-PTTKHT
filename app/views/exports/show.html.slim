@@ -11,7 +11,7 @@
     tbody
       tr
         td = @export.id
-        td = @export.user_id
+        td = @export.user.name
         td = @export.total_price
         td = @export.customer&.name
   h2 SHOW EXPORTED ITEMS
@@ -30,5 +30,12 @@
           td = item.quantity
           td = item.product.unit_price_with_tax
           td = item.product.name
-
+    tfoot
+      tr
+        td
+          ul 
+            - if can? :show, @export
+              li = link_to 'PDF', export_path(@export, :format => :pdf), target: "_blank"
+    
+            
 

@@ -3,16 +3,16 @@ class ProductsController < ApplicationController
   
   def index
     @product_filter = ProductFilter.new(@products, product_filter_params)
-    @products = @product_filter.result.paginate(:page => params[:page], :per_page => 3)
+    @products = @product_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
   end
 
   def new; end
 
   def create
     if @product.save 
-      redirect_to products_path, notice:"Luu thanh cong"
+      redirect_to products_path, notice:"Save successfully"
     else
-      render 'new'
+      render 'new', notice:"Save errors"
     end
   end
 
@@ -22,15 +22,15 @@ class ProductsController < ApplicationController
 
   def update
     if @product.update product_params
-      redirect_to products_path, notice: "Cap nhat thanh cong"
+      redirect_to products_path, notice: "Save successfully"
     else
-      render edit, notice:"Cap nhat that bai"
+      render edit, notice:"Save Errors"
     end
   end
 
   def destroy
     @product.destroy
-    redirect_to products_path, notice: "Xoa thanh cong"
+    redirect_to products_path, notice: "Destroy successfully"
   end
 
   private

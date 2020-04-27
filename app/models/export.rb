@@ -3,7 +3,7 @@ class Export < ApplicationRecord
   has_many :exported_items
   belongs_to :customer
 
-  accepts_nested_attributes_for :exported_items
+  accepts_nested_attributes_for :exported_items, allow_destroy: true
 
   def total_price
     sum = 0

@@ -21,7 +21,7 @@ class ExportsController < ApplicationController
   end
 
   def create
-    if @export.save
+    if @export.save export_params
       redirect_to exports_path, notice: "Luu thanh cong"
     else
       render 'new'

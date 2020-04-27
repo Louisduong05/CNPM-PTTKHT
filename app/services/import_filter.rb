@@ -12,9 +12,4 @@ class ImportFilter
 
     @imports
   end
-
-  def persisted?
-    false
-  end
-
 end

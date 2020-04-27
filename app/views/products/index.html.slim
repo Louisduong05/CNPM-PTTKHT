@@ -15,6 +15,7 @@
         th Quantity
         th Brand
         th Country
+        th Size
         th Remarks
         th image
         th Action
@@ -35,6 +36,8 @@
             = product.brand&.name
           td 
             = product.brand&.country
+          td
+            = product.size
           td
             = product.remarks
           td

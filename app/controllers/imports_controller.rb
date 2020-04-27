@@ -13,8 +13,11 @@ class ImportsController < ApplicationController
 
   def create
     if @import.save import_params
-      redirect_to imports_path, notice: "Luu thanh cong"
+      redirect_to imports_path, notice: 'Save sucessfully'
     else
+      error_message = @import.errors.messages.values.flatten.join(", ")
+      flash.now[:notice] = error_message if error_message.present?
+      flash.now[:notice] = "Save errors" if error_message.blank?
       render 'new'
     end 
   end
@@ -32,9 +35,12 @@ class ImportsController < ApplicationController
 
   def update
     if @import.update import_params
-      redirect_to imports_path, notice: "Cap nhat thanh cong"
+      redirect_to imports_path, notice: 'Save errors'
     else
-      render 'edit', notice: "Cap nhat that bai"
+      error_message = @import.errors.messages.values.flatten.join(", ")
+      flash.now[:notice] = error_message if error_message.present?
+      flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'edit'
     end  
   end
 
@@ -52,7 +58,7 @@ class ImportsController < ApplicationController
       ]
     )
     if action_name == "update"
-    data.delete(:quantity)
+      data.delete(:quantity)
     end
 
     data[:user_id] = current_user.id

@@ -1,0 +1,6 @@
+= simple_nested_form_for @imported_item do |f|
+  = f.fields_for :product_items do |e|
+    = e.input :code
+    = e.link_to_remove "Remove this task"
+  p = f.link_to_add "Add a task", :product_items
+  = f.button :submit

@@ -10,7 +10,7 @@ class AccountsController < ApplicationController
       redirect_to accounts_path, notice: "Luu thanh cong"
     else
       render 'new'
-    end 
+    end
   end
 
   def show; end
@@ -33,6 +33,10 @@ class AccountsController < ApplicationController
   private
 
   def account_params
-    params.require(:user).permit(:email, :password, :username, :firstname, :lastname, :dob, :phone, :address, :type)
+    data = params.require(:user).permit(:email, :password, :username, :firstname, :lastname, :dob, :phone, :address, :type)
+
+    data.delete(:password) if params[:user][:password].blank?
+    
+    data
   end
 end
