@@ -4,6 +4,9 @@
 //= require_tree 
 //= require jquery_nested_form
 //= require chart/Chart.js
+//= require datepicker/js/bootstrap-datepicker
+//= require pagination/pagination
+//= require moment
 
 //= require utils
 //= require global
@@ -11,3 +14,4 @@
 //= require notification
 //= require pages/warehouses
 //= require pages/imported_items
+//= require pages/statistical

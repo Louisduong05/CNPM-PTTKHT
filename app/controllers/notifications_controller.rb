@@ -10,4 +10,8 @@ class NotificationsController < ApplicationController
 
     render json: { success: true }
   end
+
+  def show_all
+    @notifications = Notification.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 3)
+  end
 end

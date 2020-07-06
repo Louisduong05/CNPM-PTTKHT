@@ -7,9 +7,9 @@ en:
       mark: '*'
     error_notification:
       default_message: "Please review the problems below:"
-    labels:
-      supplier:
-        name: 'Ten Cong Ty'
-    placeholders:
-      supplier:
-        name: 'Nhap Ten Cong Ty'
+    # labels:
+    #   supplier:
+    #     name: 'Ten Cong Ty'
+    # placeholders:
+    #   supplier:
+    #     name: 'Nhap Ten Cong Ty'

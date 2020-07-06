@@ -1,0 +1,16 @@
+.block  
+  h1 Notification
+  table.table.table-striped
+    thead
+      tr
+        th Id
+        th Message
+        th Link
+    tbody
+      - @notifications.each do |notification|
+        tr
+          td = notification.id
+          td = notification.message
+          td 
+            a href="#{notification.link}" Link
+  = will_paginate @notifications, renderer: BootstrapPagination::Rails

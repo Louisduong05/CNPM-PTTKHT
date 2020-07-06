@@ -41,7 +41,7 @@ class ImportedItem < ApplicationRecord
 
   def check_worehouse
     return if warehouse.capacity.to_i - plus_current_warehouse >= 0
-    errors.add(:base, 'not enough')
+    errors.add(:notice, 'not enough')
     false
   end
 

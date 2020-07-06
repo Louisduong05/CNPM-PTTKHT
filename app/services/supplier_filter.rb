@@ -16,6 +16,4 @@ class SupplierFilter
   def persisted?
     false
   end
-
-
 end

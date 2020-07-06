@@ -24,6 +24,9 @@ class ExportsController < ApplicationController
     if @export.save export_params
       redirect_to exports_path, notice: "Luu thanh cong"
     else
+      error_message = @export.errors.messages.values.flatten.join(", ")
+      flash.now[:notice] = error_message if error_message.present?
+      flash.now[:notice] = "Save errors" if error_message.blank?
       render 'new'
     end 
   end
@@ -34,7 +37,10 @@ class ExportsController < ApplicationController
     if @export.update export_params
       redirect_to exports_path, notice: "Cap nhat thanh cong"
     else
-      render 'edit', notice: "Cap nhat that bai"
+      error_message = @export.errors.messages.values.flatten.join(", ")
+      flash.now[:notice] = error_message if error_message.present?
+      flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'edit'
     end  
   end
 

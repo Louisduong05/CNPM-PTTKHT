@@ -12,11 +12,11 @@ class ProductItem < ApplicationRecord
   after_create :import_product
 
   def import_product
-    product.quantity = product.quantity + 1
-    product.save
     if imported_item.quantity == imported_item.product_items.count
       imported_item.status = 'Done'
       imported_item.save
+      product.quantity = product.quantity + imported_item.quantity
+      product.save
     end
   end
 end

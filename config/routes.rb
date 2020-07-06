@@ -23,15 +23,17 @@ Rails.application.routes.draw do
 
   resources :warehouses,      only: [:index]
 
+  resources :statistical,      only: [:index]
+
   resources :notifications,   only: [:index] do 
     collection do 
       patch :seen
+      get :show_all
     end
   end
 
   namespace :api do
     resources :warehouses,    only: [:index]
+    resources :statistical,   only: [:index]
   end
-
-
 end
