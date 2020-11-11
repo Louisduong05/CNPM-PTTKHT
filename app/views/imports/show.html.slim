@@ -1,20 +1,20 @@
 .block
-  h1 SHOW IMPORT
+  h1 = t('table.imports.show_imp')
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th User
-        th Price
-        th Supplier
+        th = t('table.imports.id')
+        th = t('table.imports.user_name')
+        th = t('table.imports.unit_price')
+        th = t('table.imports.supplier')
     tbody
       tr
         td = @import.id
         td = @import.user_id
         td = @import.total_price
         td = @import.supplier&.name
-  h2 SHOW IMPORTED ITEMS
+  h2 = t('table.imported_items.show_imi')
 
   table.table.table-striped
     thead
@@ -23,7 +23,6 @@
         th Quantity
         th Price
         th Product
-        th Status
     tbody
       - @import.imported_items.each do |item|
         tr
@@ -31,7 +30,6 @@
           td = item.quantity
           td = item.unit_price
           td = item.product.name
-          td = item.status
     tfoot
       tr
         td

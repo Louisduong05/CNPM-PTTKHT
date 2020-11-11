@@ -1,24 +1,24 @@
 = render 'search'
 
 .block  
-  h1 PRODUCT
+  h1 = t('common.product')
   - if can? :create, Product 
-    p.button-new = link_to 'New', new_product_path
+    p.button-new = link_to t('common.new'), new_product_path
 
   table.table.table-striped
     thead
       tr
-        th ID
-        th Name
-        th Original Price
-        th Unit Price
-        th Quantity
-        th Brand
-        th Country
-        th Size
-        th Remarks
-        th image
-        th Action
+        th = t('table.products.id')
+        th = t('table.products.name')
+        th = t('table.products.original_price')
+        th = t('table.products.unit_price')
+        th = t('table.products.quantity')
+        th = t('table.products.brand')
+        th = t('table.products.size')
+        th = t('table.products.remarks')
+        th = t('table.products.image')
+        th = t('table.products.is_active')
+        th = t('common.action')
     tbody
       - @products.each do |product|
         tr
@@ -34,8 +34,6 @@
             = product.quantity
           td
             = product.brand&.name
-          td 
-            = product.brand&.country
           td
             = product.size
           td
@@ -43,9 +41,11 @@
           td
             = image_tag product.image.url(:thumb), :style => "max-width: 100px; max-height: 100px;" 
           td
+            = product.is_active ? 'Có' : 'Không'
+          td
             ul.actions
               - if can? :update, product 
-                li = link_to 'Edit', edit_product_path(product)
-              - if can? :destroy, product 
-                li = link_to 'Delete',product_path(product), method: :delete
-  = will_paginate @products, renderer: BootstrapPagination::Rails
+                li = link_to t('common.edit'), edit_product_path(product)
+              - if can? :unactive, product 
+                li = link_to t('common.turn_off'),unactive_product_path(product), method: :put
+  = will_paginate @products, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails

@@ -1,96 +1,119 @@
 class StatisticalService
   class << self
-    def call(to_date, from_date)
+    def call(to_date, from_date, type)
+      products = ::Product.includes(:exported_items, :imported_items).all
+      result =
+        if type == 'Import'
+          imports(to_date, from_date, products)
+        else
+          exports(to_date, from_date, products)
+        end
       {
-        suppliers: suppliers(to_date, from_date),
-        customers: customers(to_date, from_date)
+        result: result
       }
     end
 
     private
 
-    def suppliers(to_date, from_date)
+    def exports(to_date, from_date, products)
       data = []
-      suppliers = Supplier.all
-      suppliers.includes(:imports, :imported_items).each do |supplier|
-        import_ids = supplier.imports
-                .where("created_at::date >= ? and created_at::date <= ?", from_date, to_date)
-                .pluck(:id)
-        if import_ids.count > 0
-          imported_items = supplier.imported_items.where(import_id: import_ids, status: 'Done')
-          if imported_items.present?
-            data << {
-              supplier_id: supplier.id,
-              supplier_name: supplier.name,
-              imported_items: data_import_items(imported_items)
-            }
-          end
-        end
+      products.each  do |product|
+        next if product.exported_items.blank?
+
+        exported_items = compare_date(to_date, from_date, product.exported_items)
+        data << format_data_export(exported_items, product) if exported_items.present?
       end
       data
     end
 
-    def customers(to_date, from_date)
+    def imports(to_date, from_date, products)
       data = []
-      customers = Customer.all
-      customers.includes(exports: [:exported_items]).each do |customer|
-        export_ids = customer.exports
-                .where("created_at::date >= ? and created_at::date <= ?", from_date, to_date)
-                .pluck(:id)
-        if export_ids.count > 0
-          exported_items = customer.exported_items.where(export_id: export_ids)
-          if exported_items.present?
-            data << {
-              customer_id: customer.id,
-              customer_name: customer.name,
-              exported_items: data_export_items(exported_items)
-            }
-          end
-        end
+      products.each  do |product|
+        next if product.imported_items.blank?
+
+        imported_items = compare_date(to_date, from_date, product.imported_items)
+        data << format_data_import(imported_items, product) if imported_items.present?
       end
       data
     end
 
-    def data_import_items(imported_items)
-      data = []
-      imported_item_ids = imported_items.pluck(:id)
-      product_ids = imported_items.pluck(:product_id)
-      products = Product.where(id: product_ids)
-      products.includes(:imported_items).each do |product|
-        quantity_products = 0
-        total = 0
-        product.imported_items.where(id: imported_item_ids).each do |imported_item|
-          quantity_products = quantity_products + imported_item.quantity
-          total = total + imported_item.quantity*imported_item.unit_price
+    def format_data_import(imported_items, product)
+      {
+        product_id: "PRODUCT / #{product.id}",
+        product_name: product.name,
+        total_quantity: total_quantity(imported_items),
+        price_range_max: imported_items.map(&:unit_price).max,
+        price_range_min: imported_items.map(&:unit_price).min,
+        from: imported_items.map(&:created_at).min.try(:strftime, ('%d/%m/%Y')),
+        to: imported_items.map(&:created_at).max.try(:strftime, ('%d/%m/%Y')),
+        details: details_imported_items(imported_items)
+      }
+    end
+
+    def format_data_export(exported_items, product)
+      {
+        product_id: "PRODUCT / #{product.id}",
+        product_name: product.name,
+        total_quantity: total_quantity(exported_items),
+        price_range_max: exported_items.map(&:unit_price).max,
+        price_range_min: exported_items.map(&:unit_price).min,
+        from: exported_items.map(&:created_at).min.try(:strftime, ('%d/%m/%Y')),
+        to: exported_items.map(&:created_at).max.try(:strftime, ('%d/%m/%Y')),
+        details: details_exported_items(exported_items)
+      }
+    end
+
+    def compare_date(to_date, from_date, items)
+      items.select do |item|
+        case [to_date.present?, from_date.present?]
+        when [false, true]
+          item.created_at >= item.to_date.beginning_of_day
+        when [true, true]
+          item.created_at >= from_date.to_date.beginning_of_day &&
+          item.created_at <= to_date.to_date.end_of_day
+        when [true, false]
+          item.created_at <= to_date.to_date.end_of_day
+        else
+          item
         end
-        data << {
-          product_name: product.name,
-          quantity: quantity_products,
-          total: total
+      end
+    end
+
+    def total_quantity(items)
+      total = 0
+      items.each do |item|
+        total += item.quantity
+      end
+      total
+    end
+
+    def details_imported_items(imported_items)
+      details = []
+      imported_items.each do |imported_item|
+        details << {
+          imported_id: "IMPORT / #{imported_item.import.id}",
+          user: imported_item.import.user.name,
+          user_id: imported_item.import.user.id,
+          quantity: imported_item.quantity,
+          unit_price: imported_item.unit_price, 
+          created_at: imported_item.created_at.strftime('%d/%m/%Y')
         }
       end
-      data
+      details
     end
-
-     def data_export_items(exported_items)
-      data = []
-      exported_item_ids = exported_items.pluck(:id)
-      product_ids = exported_items.pluck(:product_id)
-      products = Product.where(id: product_ids)
-      products.includes(:exported_items).each do |product|
-        quantity_products = 0
-        total = 0
-        product.exported_items.where(id: exported_item_ids).each do |exported_item|
-          quantity_products = quantity_products + exported_item.quantity
-          total = total + exported_item.quantity*exported_item.unit_price
-        end
-        data << {
-          product_name: product.name,
-          quantity: quantity_products,
-          total: total
+    def details_exported_items(exported_items)
+      details = []
+      exported_items.each do |exported_item|
+        details << {
+          imported_id: "EXPORT / #{exported_item.export.id}",
+          user: exported_item.export.user.name,
+          user_id: exported_item.export.user.id,
+          quantity: exported_item.quantity,
+          unit_price: exported_item.unit_price, 
+          created_at: exported_item.created_at.strftime('%d/%m/%Y')
         }
       end
-      data
+      details
     end
   end
 end

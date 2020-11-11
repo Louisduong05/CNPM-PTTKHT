@@ -4,7 +4,6 @@ class ImportedItem < ApplicationRecord
   belongs_to :import
   belongs_to :product
   belongs_to :warehouse
-  has_many :product_items
 
   validates :quantity,     presence: true
   validates :unit_price,   presence: true
@@ -12,19 +11,11 @@ class ImportedItem < ApplicationRecord
   validates :unit_price,   numericality: { greater_than: 0 }
   validate :check_worehouse
 
-  accepts_nested_attributes_for :product_items, allow_destroy: true
-
   before_validation :add_warehouse
   after_create :import_products
 
-  enumerize :status, in: ["Done", "Undone"], default: "Undone"
-
   def total_price
     quantity * unit_price
-  end
-
-  def excess_amount
-    quantity - product_items.count
   end
 
   def add_warehouse
@@ -33,6 +24,7 @@ class ImportedItem < ApplicationRecord
 
   def import_products
     product.original_price = unit_price
+    product.quantity += quantity
     product.save
 
     warehouse.current = plus_current_warehouse.to_i
@@ -40,8 +32,10 @@ class ImportedItem < ApplicationRecord
   end
 
   def check_worehouse
+    return false if product.blank?
     return if warehouse.capacity.to_i - plus_current_warehouse >= 0
-    errors.add(:notice, 'not enough')
+    
+    errors.add(:quantity, ':The current warehouse does not have enough spaceh')
     false
   end
 

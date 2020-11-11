@@ -1,18 +1,18 @@
 = render 'search'
 
 .block  
-  h1 IMPORT
+  h1 = t('common.import')
   - if can? :create, Import
-    p.button-new = link_to 'New', new_import_path
+    p.button-new = link_to t('common.new'), new_import_path
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th User
-        th Price
-        th Supplier        
-        th Action
+        th = t('table.imports.id')
+        th = t('table.imports.user_name')
+        th = t('table.imports.unit_price')
+        th = t('table.imports.supplier_name')        
+        th = t('common.action')
     tbody
       - @imports.each do |import|
         tr
@@ -23,4 +23,4 @@
           td 
             ul.actions
               - if can? :show, import
-                li = link_to 'View', import_path(import)  
+                li = link_to t('common.view'), import_path(import)  

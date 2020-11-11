@@ -1,0 +1,28 @@
+vi:
+  simple_form:
+    "yes": 'Có'
+    "no": 'Không'
+    required:
+      text: 'Bắt buộc'
+      mark: '*'
+    error_notification:
+      default_message: "Vui lòng xem lại các vấn đề bên dưới:"
+    labels:
+      supplier:
+        name: 'Tên nhà cung cấp'
+        phone: Số điện thoại
+        address: Địa chỉ
+      brand:
+        name: 'Tên'
+        is_active: 'Kích hoạt'
+      product:
+        brand: Nhãn
+    placeholders:
+      supplier:
+        name: 'Nhập tên'
+    options:
+      user:
+        type:
+          User: TK khách
+          Staff: Nhân viên
+          Admin: Admin

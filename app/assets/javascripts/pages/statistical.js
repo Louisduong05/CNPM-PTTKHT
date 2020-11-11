@@ -1,68 +1,103 @@
 CNPMPttkht.statistical = {
   index: {
     init: function() {
-      $( "#submit_search" ).click(function() {
-        var toDate = $('#toDate').val();
-        var fromDate = $('#fromDate').val();
-        if (toDate.length == 0 || fromDate.length == 0) {
-          alert('Xin nhập đầy đủ nội dung')
-          return true;
-        }
-        var data = {
+      $( "#submit_search" ).on('click', function() {
+        let toDate = $('#toDate').val();
+        let fromDate = $('#fromDate').val();
+        let searchType = $('#type').val();
+        let data = {
           to_date: toDate,
-          from_date: fromDate
+          from_date: fromDate,
+          type: searchType
         }
         if (data !== {}) {
-            $.ajax({
-                type:    "GET",
-                url:     "api/statistical",
-                data:    data,
-                success: function(result){
-                  callAPIGet(result);
-                },
-                error:   function(get){ console.log(this) }
-              });
+          $.ajax({
+              type:    "GET",
+              url:     "api/statistical",
+              data:    data,
+              success: (res) => {
+                let data_form = formatData(res.result);
+                addLabel(searchType)
+                console.log(data_form);
+                getTable(data_form);
+              },
+              error:   function(get){ console.log(this) }
+            });
         }
       });
 
-      const callAPIGet = (result) => {
-        $("#suppliers").empty();
-        $("#customers").empty();
-        suppliers = result.suppliers
-        customers = result.customers
-        console.log(result)
-        $.each(suppliers, function(index, supplier) {
-          if (supplier.imported_items.lenght !== 0) {
-            $( "#suppliers" ).append( "<h2> Import </h2>" );
-            $( "#suppliers" ).append( "<h3 class='supplier supplier_name'>" + supplier.supplier_name +"</h2>" );
-            $.each(supplier.imported_items, function(index, imported_item) {
-              $( "#suppliers" ).append( "<p class='item product_name'> Product name:  </p>" );
-              $( "#suppliers" ).append( "<p class='item product_name'>" + imported_item.product_name +"</p>" );
-              $( "#suppliers" ).append( "<p class='item quantity'> Quantity: </p>" );
-              $( "#suppliers" ).append( "<p class='item quantity'>" + imported_item.quantity +"</p>" );
-              $( "#suppliers" ).append( "<p class='item total'> Total: </p>" );
-              $( "#suppliers" ).append( "<p class='item total'>" + imported_item.total +"</p>" );
-            });
+      const getTable = (data) => {
+        $("#table-stastic").empty();
+        let tabledata = data;
+        console.log(tabledata)
+        //initialize table
+        let table = new Tabulator("#table-stastic", {
+            data:tabledata,
+            dataTree:true, //assign data to table
+            layout:"fitDataStretch",
+            dataTreeStartExpanded:true,
+            columns:[  
+              {title:"Id", field:"id"},
+              {title:"Name", field:"product_name"},
+              {title:"Quantity", field:"quantity"},
+              {title:"Price", field:"price"},
+              {title: "Time", field:"time"},
+              {title: "Users", field: "users"}
+          ],
+        });
+        
+        return table
+      }
+
+      const addLabel = (type) => {
+        $('#label-stastic').empty();
+        if (type == 'Import') {
+          $('#label-stastic').append("<h1> Thống kê nhập hàng </h1>")
+        } else {
+          $('#label-stastic').append("<h1> Thống kê xuất hàng </h1>")
+        }
+
+      }
+
+      const formatData = (result) => {
+        let data = [];
+        result.forEach(rs => {
+          const price_product = rs.price_range_max == rs.price_range_min ? rs.price_range_max : rs.price_range_min + ' ~ ' + rs.price_range_max
+          const user_map = rs.details.map(detail => detail.user)
+          const users = [...new Set(user_map)].join(', ')
+          const time = rs.from + ' ~ ' + rs.to
+          const quantity_product = rs.details.map(detail => detail.quantity).reduce((a, b) => parseInt(a) + parseInt(b), 0)
+          let temporary = {
+            product_name: rs.product_name,
+            id: rs.product_id,
+            price: price_product,
+            time: time,
+            users:  users,
+            quantity: quantity_product
           }
+          if (rs.details.length > 1) {
+            temporary._children = formatChild(rs.details, rs.product_name)
+          }
+          data.push(temporary)
         });
 
-        $.each(customers, function(index, customer) {
-          if (customer.exported_items.lenght == 0) {
-            return true;
-          }
-          $( "#customers" ).append( "<h2> Export </h2>" );
-          $( "#customers" ).append( "<h3 class='customer customer_name'>" + customer.customer_name +"</h2>" );
-          $.each(customer.exported_items, function(index, exported_item) {
-            $( "#customers" ).append( "<div class='items exported_item'>");
-            $( "#customers" ).append( "<p class='item product_name'> Product name:  </p>" );
-            $( "#customers" ).append( "<p class='item product_name'>" + exported_item.product_name +"</p>" );
-            $( "#customers" ).append( "<p class='item quantity'> Quantity: </p>" );
-            $( "#customers" ).append( "<p class='item quantity'>" + exported_item.quantity +"</p>" );
-            $( "#customers" ).append( "<p class='item total'> Total: </p>" );
-            $( "#customers" ).append( "<p class='item total'>" + exported_item.total +"</p>" );
-            $( "#customers" ).append( "</div>");
-          });
-        });
+        return data;
+      }
+
+      const formatChild = (child, name) => {
+        data = []
+        child.forEach( chi => {
+          data.push({
+            time: chi.created_at,
+            quantity: chi.quantity,
+            price: chi.unit_price,
+            users: chi.user,
+            product_name: name,
+            id: chi.imported_id
+          })
+        })
+        
+        return data;
       }
     }
   }

@@ -2,16 +2,14 @@ class ExportedItem < ApplicationRecord
   extend Enumerize
 
   belongs_to :export
-  belongs_to :product
+  belongs_to :product, required: true
   belongs_to :warehouse
 
   validates :quantity,     presence: true
   validates :quantity,     numericality: { greater_than: 0 }
 
-  after_validation :export_product, on: :create
-  before_validation :add_values
-
-  enumerize :status, in: ["Done", "Undone"], default: "Undone"
+  before_validation :export_product, on: :create
+  after_create :update_product_and_warehouse
 
   def add_values
     self.warehouse_id = Warehouse.first.id
@@ -23,17 +21,23 @@ class ExportedItem < ApplicationRecord
   end
 
   def export_product
-    product.quantity = self.product.quantity - self.quantity
-    if product.quantity <= 0
-      Importer.all.each do |importer|
-        Notification.create(user: importer, link: "/products/#{product.id}", message: "Need to enter more " + product.name)
+    return false unless product
+
+    if(product.quantity - self.quantity).negative?
+      ::Staff.all.each do |importer|
+        Notification.create(user: importer, link: "/products/#{product.id}", message: "Cần nhập thêm " + product.name)
       end
-      errors.add(:notice, 'not enough')
+      errors.add(:quantity, ':' + 'Products in warehouse currently are not enough')
       return false
     else
-      product.save
-      minus_current_warehouse
+      add_values
     end
+  end
+
+  def update_product_and_warehouse
+    product.quantity -= self.quantity
+    product.save
+    minus_current_warehouse
   end
 
   def unit_price
@@ -43,6 +47,7 @@ class ExportedItem < ApplicationRecord
   private
 
   def minus_current_warehouse
-    warehouse.current.to_i - product.size*quantity
+    warehouse.current = warehouse.current - product.size*quantity
+    warehouse.save
   end
 end

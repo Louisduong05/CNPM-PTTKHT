@@ -10,9 +10,9 @@ class CustomersController < ApplicationController
   
   def create
     if @customer.save
-      redirect_to customers_url, notice: "Save successfully"
+      redirect_to customers_url, notice: t('common.notice.save_success')
     else
-      render 'new'
+      render 'new', notice: t('common.notice.save_errors')
     end
   end
 
@@ -20,15 +20,15 @@ class CustomersController < ApplicationController
 
   def update
     if @customer.update customer_params
-      redirect_to customers_path, notice: "customer has been updated successfully"
+      redirect_to customers_path, notice: t('common.notice.save_success')
     else
-      render 'edit'
+      render 'edit', notice: t('common.notice.save_errors')
     end
   end
 
   def destroy
     @customer.destroy
-    redirect_to customers_path, notice: "customer has been deleted successfully"
+    redirect_to customers_path, notice: t('common.notice.save_success')
   end
 
   private

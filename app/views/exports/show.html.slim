@@ -1,28 +1,28 @@
 .block
-  h1 SHOW EXPORT
+  h1 = t('table.exports.show_exp')
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th User
-        th Price
-        th Customer
+        th = t('table.exports.id')
+        th = t('table.exports.user_name')
+        th = t('table.exports.unit_price')
+        th = t('table.exports.customer_name')
     tbody
       tr
         td = @export.id
         td = @export.user.name
         td = @export.total_price
         td = @export.customer&.name
-  h2 SHOW EXPORTED ITEMS
+  h2 = t('table.exported_items.show_exi')
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th Quantity
-        th Price
-        th Product
+        th = t('table.exported_items.id')
+        th = t('table.exported_items.quantity')
+        th = t('table.exported_items.unit_price')
+        th = t('table.exported_items.product_name')
     tbody
       - @export.exported_items.each do |item|
         tr

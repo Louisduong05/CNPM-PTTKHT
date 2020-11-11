@@ -7,9 +7,9 @@ class BrandsController < ApplicationController
 
   def create
     if @brand.save brand_params
-      redirect_to brands_path, notice: "Luu thanh cong"
+      redirect_to brands_path, notice: t('common.notice.save_success')
     else
-      render 'new'
+      render 'new', notice: t('common.notice.save_errors')
     end 
   end
 
@@ -17,20 +17,20 @@ class BrandsController < ApplicationController
 
   def update
     if @brand.update brand_params
-      redirect_to brands_path, notice: "Cap nhat thanh cong"
+      redirect_to brands_path, notice: t('common.notice.save_success')
     else
-      render 'edit', notice: "Cap nhat that bai"
+      render 'edit', notice: t('common.notice.save_errors')
     end  
   end
 
   def destroy
-    @brand.destroy
-    redirect_to brands_path, notice: "Xoa thanh cong"
+    @brand.destroy!
+    redirect_to brands_path, notice: t('common.notice.save_success')
   end
 
   private
 
   def brand_params
-    params.require(:brand).permit(:name, :country)
+    params.require(:brand).permit(:name, :is_active)
   end
 end

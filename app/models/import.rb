@@ -1,6 +1,6 @@
 class Import < ApplicationRecord
   belongs_to :user
-  has_many :imported_items
+  has_many :imported_items, dependent: :destroy 
   belongs_to :supplier
 
   accepts_nested_attributes_for :imported_items, allow_destroy: true

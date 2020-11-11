@@ -13,12 +13,12 @@ class ImportsController < ApplicationController
 
   def create
     if @import.save import_params
-      redirect_to imports_path, notice: 'Save sucessfully'
+      redirect_to imports_path, notice: t('common.notice.save_success')
     else
-      error_message = @import.errors.messages.values.flatten.join(", ")
-      flash.now[:notice] = error_message if error_message.present?
-      flash.now[:notice] = "Save errors" if error_message.blank?
-      render 'new'
+      # error_message = @import.errors.messages.values.flatten.join(", ")
+      # flash.now[:notice] = error_message if error_message.present?
+      # flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'new', notice: t('common.notice.save_errors')
     end 
   end
 
@@ -32,17 +32,6 @@ class ImportsController < ApplicationController
   end
 
   def edit; end
-
-  def update
-    if @import.update import_params
-      redirect_to imports_path, notice: 'Save errors'
-    else
-      error_message = @import.errors.messages.values.flatten.join(", ")
-      flash.now[:notice] = error_message if error_message.present?
-      flash.now[:notice] = "Save errors" if error_message.blank?
-      render 'edit'
-    end  
-  end
 
   private
 

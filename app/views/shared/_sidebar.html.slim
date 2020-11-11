@@ -5,34 +5,31 @@ section.shared-sidebar
   ul
     li
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Products', products_path
+      = link_to t('common.product_management'), products_path
     li
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Suppliers', suppliers_path
+      = link_to t('common.supplier_management'), suppliers_path
     li
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Customers', customers_path  
+      = link_to t('common.customer_management'), customers_path  
     - if can? :index, Export  
       li 
         i.fa.fa-home aria-hidden="true"
-        = link_to 'Exports', exports_path 
+        = link_to t('common.export_management'), exports_path 
     - if can? :index, Import  
       li   
         i.fa.fa-home aria-hidden="true"
-        = link_to 'Imports', imports_path
-    li   
-      i.fa.fa-home aria-hidden="true"
-      = link_to 'Imported items', imported_items_path
+        = link_to t('common.import_management'), imports_path
     li 
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Brands', brands_path
+      = link_to t('common.brand_management'), brands_path
     li
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Warehouse', warehouses_path
+      = link_to t('common.warehouse_management'), warehouses_path
     li
       i.fa.fa-home aria-hidden="true"
-      = link_to 'Statistical', statistical_index_path
+      = link_to t('common.statistical'), statistical_index_path
     - if can? :index, User  
       li 
         i.fa.fa-cog aria-hidden="true"
-        = link_to 'Accounts', accounts_path
+        = link_to t('common.account_management'), accounts_path

@@ -14,10 +14,4 @@ class ProductFilter
 
     @products
   end
-
-  def persisted?
-    false
-  end
-
-
 end

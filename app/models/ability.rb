@@ -7,24 +7,26 @@ class Ability
     if user.type == "Admin"
       can :manage, :all
     end
-    if user.type == "Exporter"
+    if user.type == "Staff"
       can :index, Product
       can :index, Supplier
       can :index, Customer
       can [:index, :new, :create, :show], Export
       can [:index, :new, :create, :show], ExportedItem
-      can :index, Brand
-      can [:index, :seen], Notification
-    end
-    if user.type == "Importer"
-      can [:index, :show], Product
-      can :index, Supplier
-      can :index, Customer
       can [:index, :new, :create, :show], Import
       can [:index, :new, :create, :show], ImportedItem
       can :index, Brand
-      can [:index, :seen], Notification
+      can [:index, :seen, :show_all], Notification
     end
+    # if user.type == "Importer"
+    #   can [:index, :show], Product
+    #   can :index, Supplier
+    #   can :index, Customer
+    #   can [:index, :new, :create, :show], Import
+    #   can [:index, :new, :create, :show], ImportedItem
+    #   can :index, Brand
+    #   can [:index, :seen], Notification
+    # end
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)

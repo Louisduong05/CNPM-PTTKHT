@@ -1,7 +1,7 @@
 CNPMPttkht.warehouses = {
   index: {
     init: function() {
-      fetch("//localhost:3002/api/warehouses")
+      fetch("//localhost:3030/api/warehouses")
         .then(res => res.json())
         .then(warehouses => {
           var ctx = document.getElementById('myChart').getContext('2d');
@@ -12,7 +12,7 @@ CNPMPttkht.warehouses = {
             var myChart = new Chart(ctx, {
               type: 'pie',
               data: {
-              labels: ["current", "excess capacity"],
+              labels: ["Hiện tại", "Còn lại"],
               datasets: [{
                 label: '# of Votes',
                 data: [current, excess_capacity],

@@ -1,0 +1,5 @@
+vi: 
+  common:
+    action: Action
+    edit: Edit
+    delete: Delete

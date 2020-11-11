@@ -1,16 +1,16 @@
 .block  
-  h1 Notification
+  h1 = t('common.notification')
   table.table.table-striped
     thead
       tr
-        th Id
-        th Message
-        th Link
+        th = t('table.notification.id')
+        th = t('table.notification.message')
+        th = t('table.notification.link')
     tbody
       - @notifications.each do |notification|
         tr
           td = notification.id
           td = notification.message
           td 
-            a href="#{notification.link}" Link
+            a href="#{notification.link}" = t('table.notification.link')
   = will_paginate @notifications, renderer: BootstrapPagination::Rails

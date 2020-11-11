@@ -5,18 +5,18 @@
 = render 'search'  
 
 .block  
-  h1 SUPPLIER
+  h1 = t('common.supplier')
   - if can? :create, Supplier
-    p.button-new = link_to 'New', new_supplier_path
+    p.button-new = link_to t('common.new'), new_supplier_path
 
   table.table.table-striped
     thead
       tr
-        th ID
-        th Name
-        th Phone
-        th Adress
-        th Action
+        th = t('table.suppliers.id')
+        th = t('table.suppliers.name')
+        th = t('table.suppliers.phone')
+        th = t('table.suppliers.address')
+        th = t('common.action')
     tbody
       - @suppliers.each do |supplier|
         tr
@@ -31,8 +31,8 @@
           td
             ul.actions 
               - if can? :update, supplier
-                li = link_to 'Edit', edit_supplier_path(supplier)
+                li = link_to t('common.edit'), edit_supplier_path(supplier)
               - if can? :destroy, supplier               
-                li = link_to 'Delete', supplier_path(supplier), method: :delete
+                li = link_to t('common.delete'), supplier_path(supplier), method: :delete
 
             

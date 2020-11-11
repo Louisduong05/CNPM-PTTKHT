@@ -31,3 +31,9 @@
 
 en:
   hello: "Hello world"
+  login:
+    forgot_pass: Forgot your password?
+  models:
+    branchs:
+      id: 'ID'
+      name: 'Name'

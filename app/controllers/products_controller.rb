@@ -10,9 +10,9 @@ class ProductsController < ApplicationController
 
   def create
     if @product.save 
-      redirect_to products_path, notice:"Save successfully"
+      redirect_to products_path, notice: t('common.notice.save_success')
     else
-      render 'new', notice:"Save errors"
+      render 'new', notice: t('common.notice.save_errors')
     end
   end
 
@@ -28,15 +28,15 @@ class ProductsController < ApplicationController
     end
   end
 
-  def destroy
-    @product.destroy
-    redirect_to products_path, notice: "Destroy successfully"
+  def unactive
+    @product.update(is_active: !@product.is_active)
+    redirect_to products_path, notice: t('common.notice.save_success')
   end
 
   private
 
   def product_params
-    params.require(:product).permit(:name, :original_price, :country, :remarks, :supplier_id, :brand_id, :image)
+    params.require(:product).permit(:name, :original_price, :country, :remarks, :supplier_id, :brand_id, :image, :size)
   end
 
   def product_filter_params

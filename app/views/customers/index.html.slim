@@ -1,18 +1,18 @@
 = render 'search'
 
 .block  
-  h1 Customer
+  h1 = t('common.customer')
   - if can? :create, Customer
-    p.button-new = link_to 'New', new_customer_path
+    p.button-new = link_to t('common.new'), new_customer_path
 
   table.table.table-striped
     thead
       tr
-        th ID
-        th Name
-        th Phone
-        th Adress
-        th Action
+        th = t('table.suppliers.id')
+        th = t('table.customers.name')
+        th = t('table.suppliers.phone')
+        th = t('table.suppliers.address')
+        th = t('common.action')
     tbody
       - @customers.each do |customer|
         tr
@@ -27,8 +27,8 @@
           td
             ul.actions 
               - if can? :update, customer
-                li = link_to 'Edit', edit_customer_path(customer)
+                li = link_to t('common.edit'), edit_customer_path(customer)
               - if can? :destroy, customer               
-                li = link_to 'Delete', customer_path(customer), method: :delete
+                li = link_to t('common.delete'), customer_path(customer), method: :delete
 
             

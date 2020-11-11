@@ -1,24 +1,22 @@
 .block
-  h1 BRANDS
+  h1 = t('common.brand')
   - if can? :create, Brand
-    p.button-new = link_to 'New', new_brand_path
+    p.button-new = link_to t('common.new'), new_brand_path
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th Name
-        th Country
-        th Action
+        th = t('table.brands.id')
+        th = t('table.brands.name')
+        th = t('common.action')
     tbody
       - @brands.each do |brand|
         tr
           td = brand.id
           td = brand.name
-          td = brand.country
           td 
             ul.actions
               - if can? :update, brand
-                li = link_to 'Edit', edit_brand_path(brand)
+                li = link_to t('common.edit'), edit_brand_path(brand)
               - if can? :destroy, brand  
-                li = link_to 'Delete',brand_path(brand), method: :delete
+                li = link_to t('common.delete'),brand_path(brand), method: :delete

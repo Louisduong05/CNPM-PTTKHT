@@ -15,9 +15,9 @@ class SuppliersController < ApplicationController
   
   def create
     if @supplier.save
-      redirect_to suppliers_url, notice: "Save successfully"
+      redirect_to suppliers_url, notice: t('common.notice.save_success')
     else
-      render 'new'
+      render 'new', notice: t('common.notice.save_errors')
     end
   end
 
@@ -25,14 +25,14 @@ class SuppliersController < ApplicationController
 
   def update
     if @supplier.update supplier_params
-      redirect_to suppliers_path, notice: "Supplier has been updated successfully"
+      redirect_to suppliers_path, notice: t('common.notice.save_success')
     else
-      render 'edit'
+      render 'edit', notice: t('common.notice.save_errors')
     end
   end
 
   def destroy
-  @supplier.destroy
+    @supplier.destroy
     redirect_to suppliers_path, notice: "Supplier has been deleted successfully"
   end
 

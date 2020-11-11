@@ -1,4 +1,4 @@
-= simple_form_for brand do |f|
+= simple_form_for @brand do |f|
   = f.input :name
-  = f.input :country
+  = f.input :is_active, as: :select
   = f.button :submit

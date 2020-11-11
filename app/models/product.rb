@@ -4,9 +4,8 @@ class Product < ApplicationRecord
   has_many :imported_items
   belongs_to :brand
 
-	validates :name,	presence: true
-	validates :original_price,	presence: true
-	validates :quantity,	presence: false
+	validates :name, :size,	:original_price, presence: true
+	validates :name, uniqueness: true
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def tax

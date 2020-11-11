@@ -22,12 +22,12 @@ class ExportsController < ApplicationController
 
   def create
     if @export.save export_params
-      redirect_to exports_path, notice: "Luu thanh cong"
+      redirect_to exports_path, notice: t('common.notice.save_success')
     else
-      error_message = @export.errors.messages.values.flatten.join(", ")
-      flash.now[:notice] = error_message if error_message.present?
-      flash.now[:notice] = "Save errors" if error_message.blank?
-      render 'new'
+    #   error_message = @export.errors.messages.values.flatten.join(", ")
+    #   flash.now[:notice] = error_message if error_message.present?
+    #   flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'new', notice: t('common.notice.save_errors')
     end 
   end
 
@@ -35,13 +35,13 @@ class ExportsController < ApplicationController
 
   def update
     if @export.update export_params
-      redirect_to exports_path, notice: "Cap nhat thanh cong"
+      redirect_to exports_path, notice: t('common.notice.save_success')
     else
-      error_message = @export.errors.messages.values.flatten.join(", ")
-      flash.now[:notice] = error_message if error_message.present?
-      flash.now[:notice] = "Save errors" if error_message.blank?
-      render 'edit'
-    end  
+      # error_message = @export.errors.messages.values.flatten.join(", ")
+      # flash.now[:notice] = error_message if error_message.present?
+      # flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'edit', notice: t('common.notice.save_errors')
+    end
   end
 
   # def destroy

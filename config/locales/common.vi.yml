@@ -1,0 +1,40 @@
+vi: 
+  common:
+    action: Chức năng
+    new: Tạo mới
+    view: Chi tiết
+    edit: Sửa
+    delete: Xoá
+    turn_off: đảo kích hoạt
+    log_out: Thoát tài khoản
+    product_management: Quản lý sản phẩm
+    brand_management: Quản lý nhãn
+    export_management: Quản lý xuất hàng
+    import_management: Quản lý nhập hàng
+    supplier_management: Quản lý nhà cung cấp
+    customer_management: Quản lý khách hàng
+    warehouse_management: Quản lý kho
+    account_management: Quản lý tài khoản
+    statistical: Thống kê
+    brand_select: Chọn nhãn
+    product_name: Tên sản phẩm
+    product: Danh sách sản phẩm
+    supplier: Danh sách nhà cung cấp
+    customer: Danh sách khách hàng
+    export: Danh sách xuất hàng
+    import: Danh sách nhập hàng
+    brand: Danh sách nhãn
+    warehouse: Tình trạng kho
+    account: Danh sách tài khoản
+    notification: Danh sách thông báo của bạn
+    search: Tìm kiếm
+    notice:
+      save_success: 'Thực hiện tác vụ thành công'
+      save_errors: 'Thực hiện tác vụ thất bại'
+    home: 
+      suppliers: Nhà cung cấp
+      customers: Khách hàng
+      products: Sản phẩm
+      brands: Nhãn
+      exports: Xuất hàng
+      imports: Nhập hàng

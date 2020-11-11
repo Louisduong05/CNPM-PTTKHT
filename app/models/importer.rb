@@ -1,1 +1,0 @@
-class Importer < User; end

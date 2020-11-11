@@ -6,6 +6,7 @@
 //= require chart/Chart.js
 //= require datepicker/js/bootstrap-datepicker
 //= require pagination/pagination
+//= require tabulator/dist/js/tabulator
 //= require moment
 
 //= require utils

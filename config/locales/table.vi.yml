@@ -1,0 +1,82 @@
+vi:
+  table:
+    notification:
+      id: ID
+      message: Tin nhắn
+      link: Đường dẫn
+    brands:
+      id: 'ID'
+      name: 'Tên nhãn'
+      new_bra: Tạo mới nhãn
+      edit_bra: Sửa nhãn
+      show_bra: Chi tiết nhãn
+    products:
+      id: 'ID'
+      name: "Tên sản phẩm"
+      is_active: "Kích hoạt"
+      original_price: "Giá nhập"
+      unit_price: "Giá xuất"
+      quantity: Số lượng
+      size: Kích thước
+      remarks: Ghi chú
+      image: Hình ảnh minh hoạ
+      brand_id: Nhãn ID
+      brand: Nhãn
+      new_pro: Tạo mới sản phẩm
+      edit_pro: Sửa sản phẩm
+      show_pro: Chi tiết sản phẩm
+    suppliers:
+      id: 'ID'
+      name: "Tên nhà cung cấp"
+      phone: "Số điện thoại"
+      address: Địa chỉ
+      new_sup: Tạo mới nhà cung cấp
+      edit_sup: Sửa thông tin nhà cung cấp
+      show_sup: Chi tiết nhà cung cấp
+    customers:
+      id: ID
+      name: Tên khách hàng
+      phone: Số điện thoại
+      address: Địa chỉ
+      new_cus: Tạo mới khách hàng
+      edit_cus: Sửa thông tin khách hàng
+      show_cus: Chi tiết thông tin khách hàng
+    exports:
+      id: ID
+      user_name: Người tạo
+      unit_price: Tổng giá xuất
+      customer_name: Tên khách hàng
+      new_exp: Tạo mới xuất hàng
+      edit_exp: Sửa xuất hàng
+      show_exp: Chi tiết thông tin xuất
+    exported_items:
+      id: ID
+      quantity: Số lượng
+      unit_price: Giá xuất
+      product_name: Tên sản phẩm
+      show_exi: Chi tiết thông tin xuất theo sản phẩm  
+    imports:
+      id: ID
+      user_name: Người tạo
+      unit_price: Tổng giá xuất
+      supplier_name: Tên nhà cung cấp
+      new_imp: Tạo mới nhập hàng
+      edit_imp: Sửa nhập hàng
+      show_imp: Chi tiết thông tin nhập
+    imported_items:
+      id: ID
+      quantity: Số lượng
+      unit_price: Giá nhập
+      product_name: Tên sản phẩm
+      show_imi: Chi tiết thông tin nhập theo sản phẩm
+    accounts:
+      id: ID
+      username: Biệt danh 
+      dob: Ngày tháng năm sinh
+      phone: Số điện thoại
+      address: Địa chỉ
+      firstname: Tên
+      lastname: Họ và tên đệm
+      type: Loại
+      new_user: Tạo mới tài khoản
+      edit_user: Chỉnh sửa tài khoản

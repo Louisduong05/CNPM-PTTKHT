@@ -1,18 +1,18 @@
 = render 'search'
 
 .block  
-  h1 EXPORT
+  h1 = t('common.export')
   - if can? :create, Export
-    p.button-new = link_to 'New', new_export_path
+    p.button-new = link_to t('common.new'), new_export_path
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th User
-        th Price
-        th Customer        
-        th Action
+        th = t('table.exports.id')
+        th = t('table.exports.user_name')
+        th = t('table.exports.unit_price')
+        th = t('table.exports.customer_name')        
+        th = t('common.action')
     tbody
       - @exports.each do |export|
         tr
@@ -23,5 +23,5 @@
           td 
             ul.actions
               - if can? :show, export
-                li = link_to 'View', export_path(export)
+                li = link_to t('common.view'), export_path(export)
                   

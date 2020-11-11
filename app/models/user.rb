@@ -3,14 +3,16 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable     
+         :recoverable, :rememberable, :validatable
+  
+  validates :username, presence: true
 
   has_many :exports
   has_many :imports
   has_many :notifications 
   has_many :product_items
 
-  enumerize :type, in: ["User", "Admin", "Importer", "Exporter"], default: "User"
+  enumerize :type, in: ["User", "Admin", "Staff"], default: "User"
 
   def name
     "#{firstname}"

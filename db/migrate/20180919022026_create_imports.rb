@@ -1,7 +1,7 @@
 class CreateImports < ActiveRecord::Migration[5.2]
   def change
     create_table :imports do |t|
-      t.integer :price
+      t.datetime :deleted_at, index: true
       t.timestamp
     end
   end

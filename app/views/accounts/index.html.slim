@@ -1,19 +1,19 @@
 .block  
-  h1 ACCCOUNTS
-  p.button-new = link_to 'New', new_account_path
+  h1 = t('common.account')
+  p.button-new = link_to t('common.new'), new_account_path
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th Email
-        th Account name
-        th First name
-        th Last name
-        th Day of birth
-        th Phone
-        th Address
-        th Action
+        th = t('table.accounts.id')
+        th = t('table.accounts.email')
+        th = t('table.accounts.username')
+        th = t('table.accounts.firstname')
+        th = t('table.accounts.lastname')
+        th = t('table.accounts.dob')
+        th = t('table.accounts.phone')
+        th = t('table.accounts.address')
+        th = t('common.action')
     tbody
       - @accounts.each do |account|
         tr
@@ -27,5 +27,5 @@
           td = account.address
           td 
             ul.actions
-              li = link_to 'Edit', edit_account_path(account)
-              li = link_to 'Delete',account_path(account), method: :delete
+              li = link_to t('common.edit'), edit_account_path(account)
+              li = link_to t('common.delete'),account_path(account), method: :delete

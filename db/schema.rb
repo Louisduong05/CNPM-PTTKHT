@@ -10,14 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_30_031928) do
+ActiveRecord::Schema.define(version: 2020_11_06_082447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
-    t.string "country"
+    t.boolean "is_active", default: true
+    t.datetime "deleted_at"
+    t.index ["deleted_at"], name: "index_brands_on_deleted_at"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -30,46 +32,52 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
 
   create_table "exported_items", force: :cascade do |t|
     t.integer "quantity"
+    t.datetime "deleted_at"
     t.bigint "export_id"
     t.bigint "product_id"
     t.bigint "warehouse_id"
-    t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "unit_price"
+    t.index ["deleted_at"], name: "index_exported_items_on_deleted_at"
     t.index ["export_id"], name: "index_exported_items_on_export_id"
     t.index ["product_id"], name: "index_exported_items_on_product_id"
     t.index ["warehouse_id"], name: "index_exported_items_on_warehouse_id"
   end
 
   create_table "exports", force: :cascade do |t|
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "customer_id"
     t.index ["customer_id"], name: "index_exports_on_customer_id"
+    t.index ["deleted_at"], name: "index_exports_on_deleted_at"
     t.index ["user_id"], name: "index_exports_on_user_id"
   end
 
   create_table "imported_items", force: :cascade do |t|
     t.integer "quantity"
     t.integer "unit_price"
+    t.datetime "deleted_at"
     t.bigint "import_id"
     t.bigint "product_id"
-    t.string "status"
     t.bigint "warehouse_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_imported_items_on_deleted_at"
     t.index ["import_id"], name: "index_imported_items_on_import_id"
     t.index ["product_id"], name: "index_imported_items_on_product_id"
     t.index ["warehouse_id"], name: "index_imported_items_on_warehouse_id"
   end
 
   create_table "imports", force: :cascade do |t|
+    t.datetime "deleted_at"
     t.bigint "user_id"
     t.bigint "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_imports_on_deleted_at"
     t.index ["supplier_id"], name: "index_imports_on_supplier_id"
     t.index ["user_id"], name: "index_imports_on_user_id"
   end
@@ -77,26 +85,13 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
   create_table "notifications", force: :cascade do |t|
     t.string "link"
     t.string "message"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "user_id"
     t.boolean "read", default: false
-    t.index ["user_id"], name: "index_notifications_on_user_id"
-  end
-
-  create_table "product_items", force: :cascade do |t|
-    t.string "code"
-    t.bigint "product_id"
-    t.bigint "imported_item_id"
-    t.bigint "exported_item_id"
-    t.bigint "user_id"
-    t.string "status"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["exported_item_id"], name: "index_product_items_on_exported_item_id"
-    t.index ["imported_item_id"], name: "index_product_items_on_imported_item_id"
-    t.index ["product_id"], name: "index_product_items_on_product_id"
-    t.index ["user_id"], name: "index_product_items_on_user_id"
+    t.bigint "user_id"
+    t.index ["deleted_at"], name: "index_notifications_on_deleted_at"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -104,6 +99,8 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
     t.integer "original_price", default: 0
     t.integer "quantity", default: 0
     t.text "remarks"
+    t.boolean "is_active", default: true
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "brand_id"
@@ -113,14 +110,17 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
     t.datetime "image_updated_at"
     t.integer "size"
     t.index ["brand_id"], name: "index_products_on_brand_id"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
   end
 
   create_table "suppliers", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "phone"
     t.string "address"
+    t.datetime "deleted_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_suppliers_on_deleted_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -129,6 +129,7 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
@@ -138,17 +139,21 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
     t.string "phone"
     t.string "address"
     t.string "type", default: "User"
+    t.boolean "is_active", default: true
+    t.index ["deleted_at"], name: "index_users_on_deleted_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   create_table "warehouses", force: :cascade do |t|
     t.string "name"
-    t.string "current"
-    t.string "capacity"
+    t.integer "current", default: 0
+    t.integer "capacity"
     t.boolean "status", default: false
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["deleted_at"], name: "index_warehouses_on_deleted_at"
   end
 
   add_foreign_key "exported_items", "exports"
@@ -161,9 +166,5 @@ ActiveRecord::Schema.define(version: 2020_04_30_031928) do
   add_foreign_key "imported_items", "warehouses"
   add_foreign_key "imports", "suppliers"
   add_foreign_key "imports", "users"
-  add_foreign_key "product_items", "exported_items"
-  add_foreign_key "product_items", "imported_items"
-  add_foreign_key "product_items", "products"
-  add_foreign_key "product_items", "users"
   add_foreign_key "products", "brands"
 end

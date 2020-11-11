@@ -7,10 +7,15 @@ class AccountsController < ApplicationController
 
   def create
     if @account.save
-      redirect_to accounts_path, notice: "Luu thanh cong"
+      redirect_to accounts_path, notice: t('common.notice.save_success')
     else
-      render 'new'
+      render 'new', notice: t('common.notice.save_errors')
     end
+  end
+
+  def unactive
+    @account.update(is_active: !@product.is_active)
+    redirect_to products_path, notice: t('common.notice.save_success')
   end
 
   def show; end
@@ -19,15 +24,15 @@ class AccountsController < ApplicationController
 
   def update
     if @account.update account_params
-      redirect_to accounts_path, notice: "Cap nhat thanh cong"
+      redirect_to accounts_path, notice: t('common.notice.save_success')
     else
-      render 'edit', notice: "Cap nhat that bai"
+      render 'edit', notice: t('common.notice.save_success')
     end  
   end
 
   def destroy
     @account.destroy
-    redirect_to accounts_path, notice: "Xoa thanh cong"
+    redirect_to accounts_path, notice: t('common.notice.save_success')
   end
 
   private

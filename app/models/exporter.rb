@@ -1,1 +1,0 @@
-class Exporter < User; end
