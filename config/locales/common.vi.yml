@@ -1,6 +1,8 @@
 vi: 
   common:
     action: Chức năng
+    official: Hoàn thành
+    cancel: Huỷ
     new: Tạo mới
     view: Chi tiết
     edit: Sửa
@@ -13,7 +15,7 @@ vi:
     import_management: Quản lý nhập hàng
     supplier_management: Quản lý nhà cung cấp
     customer_management: Quản lý khách hàng
-    warehouse_management: Quản lý kho
+    warehouse_management: Tình trạng kho
     account_management: Quản lý tài khoản
     statistical: Thống kê
     brand_select: Chọn nhãn
@@ -23,6 +25,7 @@ vi:
     customer: Danh sách khách hàng
     export: Danh sách xuất hàng
     import: Danh sách nhập hàng
+    pays: Danh sách hoá đơn
     brand: Danh sách nhãn
     warehouse: Tình trạng kho
     account: Danh sách tài khoản

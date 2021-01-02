@@ -23,4 +23,13 @@
           td 
             ul.actions
               - if can? :show, import
-                li = link_to t('common.view'), import_path(import)  
+                li = link_to t('common.view'), import_path(import)
+              -if import.status == 'temporary'
+                - if can? :edit, import
+                  li = link_to t('common.edit'), edit_import_path(import) 
+                - if can? :official, import
+                  li = link_to t('common.official'), official_import_path(import), method: :post
+                - if can? :cancel, import
+                  li = link_to t('common.cancel'), cancel_import_path(import), method: :post
+  = will_paginate @imports, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
+              

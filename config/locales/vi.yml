@@ -54,6 +54,10 @@ vi:
         supplier: Nhà cung cấp
         user_id: ID người dùng
         user: Người dùng
+        statuses: 
+          temporary: Chờ
+          official: Hoàn thành
+          cancel: Huỷ
       imported_item:
         quantity: Số lượng
         import_id: ID nhập hàng
@@ -74,6 +78,12 @@ vi:
         image: Hình ảnh minh hoạ
         brand_id: Nhãn ID
         brand: Nhãn
+      pay:
+        export_id: ID Nhập hàng
+        statuses: 
+          temporary: Chờ
+          official: Hoàn thành
+          cancel: Huỷ
     errors:
       messages:
         record_invalid: 'Có các lỗi sau: %{errors}'

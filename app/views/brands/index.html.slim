@@ -20,3 +20,4 @@
                 li = link_to t('common.edit'), edit_brand_path(brand)
               - if can? :destroy, brand  
                 li = link_to t('common.delete'),brand_path(brand), method: :delete
+  = will_paginate @brands, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails

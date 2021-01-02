@@ -19,4 +19,16 @@ class Product < ApplicationRecord
   def unit_price_with_tax
     original_price * tax + original_price
   end
+
+  def export_offi
+    exported_items.includes(export: :pay).select do |exported_item|
+      exported_item.export&.pay&[][:status] == 'official'
+    end
+  end
+
+  def import_offi
+    imported_items.includes(:import).select do |imported_item|
+      imported_item.import.status == 'official'
+    end
+  end
 end

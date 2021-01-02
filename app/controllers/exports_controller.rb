@@ -3,7 +3,7 @@ class ExportsController < ApplicationController
   
   def index
     @export_filter = ExportFilter.new(@exports, export_filter_params)
-    @exports = @export_filter.result
+    @exports = @export_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
     @export = Export.new
   end
 

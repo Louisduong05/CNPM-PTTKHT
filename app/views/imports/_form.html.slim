@@ -1,7 +1,7 @@
 = simple_nested_form_for @import do |f|
   = f.association :supplier
   = f.fields_for :imported_items do |e|
-    = e.association :product
+    = e.association :product, collection: Product.where(is_active: true)
     = e.input :quantity
     = e.input :unit_price
     = e.link_to_remove "Remove this task"

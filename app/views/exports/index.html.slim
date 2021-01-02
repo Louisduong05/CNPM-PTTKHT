@@ -24,4 +24,5 @@
             ul.actions
               - if can? :show, export
                 li = link_to t('common.view'), export_path(export)
+  = will_paginate @exports, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
                   

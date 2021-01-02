@@ -1,7 +1,9 @@
 class BrandsController < ApplicationController
   load_and_authorize_resource
 
-  def index; end
+  def index
+    @brands = @brands.order("id ASC").paginate(:page => params[:page], :per_page => 3)
+  end
 
   def new; end
 

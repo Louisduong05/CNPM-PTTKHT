@@ -58,10 +58,10 @@ vi:
     imports:
       id: ID
       user_name: Người tạo
-      unit_price: Tổng giá xuất
+      unit_price: Tổng giá nhập
       supplier_name: Tên nhà cung cấp
       new_imp: Tạo mới nhập hàng
-      edit_imp: Sửa nhập hàng
+      edit_imp: Cập nhật nhập hàng
       show_imp: Chi tiết thông tin nhập
     imported_items:
       id: ID
@@ -80,3 +80,11 @@ vi:
       type: Loại
       new_user: Tạo mới tài khoản
       edit_user: Chỉnh sửa tài khoản
+    pays:
+      id: ID
+      code: Mã hoá đơn
+      payment_by: Loại thanh toán
+      status: Trạng thái
+      export_id: ID xuất hàng
+      action: 
+        payment: Chọn loại thanh toán

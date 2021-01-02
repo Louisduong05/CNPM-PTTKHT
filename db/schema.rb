@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_082447) do
+ActiveRecord::Schema.define(version: 2020_12_16_143401) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_082447) do
     t.bigint "supplier_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "status", default: 0
     t.index ["deleted_at"], name: "index_imports_on_deleted_at"
     t.index ["supplier_id"], name: "index_imports_on_supplier_id"
     t.index ["user_id"], name: "index_imports_on_user_id"
@@ -92,6 +93,18 @@ ActiveRecord::Schema.define(version: 2020_11_06_082447) do
     t.bigint "user_id"
     t.index ["deleted_at"], name: "index_notifications_on_deleted_at"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "pays", force: :cascade do |t|
+    t.bigint "export_id"
+    t.bigint "user_id"
+    t.string "code"
+    t.integer "payment_by"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["export_id"], name: "index_pays_on_export_id"
+    t.index ["user_id"], name: "index_pays_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

@@ -3,7 +3,7 @@ class CustomersController < ApplicationController
   
   def index
     @customer_filter = CustomerFilter.new(@customers, customer_filter_params)
-    @customers = @customer_filter.result
+    @customers = @customer_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
   end
   
   def new; end

@@ -3,7 +3,7 @@ class SuppliersController < ApplicationController
   
   def index
     @supplier_filter = SupplierFilter.new(@suppliers, supplier_filter_params)
-    @suppliers = @supplier_filter.result
+    @suppliers = @supplier_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
     # if params[:keyword]
     #   @suppliers = Supplier.where('suppliers.name LIKE ?', "%#{params[:keyword]}%")
     # else

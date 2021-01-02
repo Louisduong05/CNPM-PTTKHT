@@ -1,18 +1,25 @@
+.simple_form
+  .form-group.string.optional
+    label.form-control-label.string.optional Từ:
+    input#fromDate.form-control.string.optional data-provide="datepicker" name="from_date" type="text" /
+  .form-group.string.optional
+    label.form-control-label.string.optional Đến:
+    input#toDate.form-control.string.optional data-provide="datepicker" name="to_date" type="text" /
+  .form-group.select.optional
+    label.form-control-label.string.optional Loại:
+    select#type.form-control.select.optional name="type" 
+      option value="Import"  Nhập
+      option value="Export"  Xuất
+  .form-group.select.optional
+    label.form-control-label.string.optional Sản phẩm:
+    select#product.form-control.select.optional name="product"
+      option value=""  Chọn
+      - @products.each do |product|
+        - id = product.id
+        option value=id 
+          = product.name
+  input#submit_search.btn.color-btn type="submit" value="thống kê" / 
 .block
-  label From:
-  input#fromDate data-provide="datepicker" name="from_date" type="text" /
-  label To:
-  input#toDate data-provide="datepicker" name="to_date" type="text" /
-  label Type:
-  select#type
-    option value="Import"  Nhập
-    option value="Export"  Xuất
-  br/
-  br/
-  input#submit_search type="submit" value="submit" /
-  br/
-  br/
-
   #label-stastic
   #table-stastic
 

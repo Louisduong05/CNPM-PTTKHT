@@ -20,6 +20,10 @@ section.shared-sidebar
       li   
         i.fa.fa-home aria-hidden="true"
         = link_to t('common.import_management'), imports_path
+    - if can? :index, Pay
+      li   
+        i.fa.fa-home aria-hidden="true"
+        = link_to 'Quản lý thanh toán', pays_path
     li 
       i.fa.fa-home aria-hidden="true"
       = link_to t('common.brand_management'), brands_path

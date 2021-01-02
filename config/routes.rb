@@ -18,9 +18,21 @@ Rails.application.routes.draw do
 
     resources :exports,         only: [:index, :show, :new, :create]
 
+    resources :pays,            only: [:index, :edit, :update, :show] do
+      member do
+        post :cancel 
+        post :official 
+      end
+    end
+
     # resources :imported_items,  only: [:index, :edit, :update]
 
-    resources :imports,         only: [:index, :show, :new, :create]
+    resources :imports,         only: [:index, :show, :new, :create, :edit, :update] do
+      member do
+        post :official
+        post :cancel
+      end
+    end
 
     resources :brands,          only: [:index, :new, :create, :edit, :update, :destroy]
 

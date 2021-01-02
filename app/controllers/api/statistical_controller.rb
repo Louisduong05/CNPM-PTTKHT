@@ -1,6 +1,6 @@
 class Api::StatisticalController < Api::BaseController
   def index
-    data = StatisticalService.call(params[:to_date], params[:from_date], params[:type])
+    data = StatisticalService.call(params)
     render json: data, status: 200
   end
 end

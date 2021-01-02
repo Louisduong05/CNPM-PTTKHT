@@ -30,5 +30,6 @@
                 li = link_to t('common.edit'), edit_customer_path(customer)
               - if can? :destroy, customer               
                 li = link_to t('common.delete'), customer_path(customer), method: :delete
+  = will_paginate @customers, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
 
             

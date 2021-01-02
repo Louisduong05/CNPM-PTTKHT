@@ -1,0 +1,40 @@
+= render 'search'
+
+.block  
+  h1 = t('common.pays')
+  - if can? :create, Export
+    p.button-new = link_to t('common.new'), new_export_path
+
+  table.table.table-striped
+    thead
+      tr
+        th = t('table.pays.id')
+        th = t('table.pays.code')
+        th = t('table.pays.payment_by')
+        th = t('table.pays.export_id')        
+        th = t('table.pays.status')        
+        th = t('common.action')
+    tbody
+      - @pays.each do |pay|
+        tr
+          td = pay.id
+          td = pay.code
+          td = pay.payment_by
+          td = pay.export_id
+          td = Pay.translate_enum_name(:status, pay.status)
+          td 
+            ul.actions
+              - if (can? :edit, pay) && (pay.status == 'temporary')
+                li = link_to t('table.pays.action.payment'), edit_pay_path(pay)
+                br /
+              - if can? :show, pay.export
+                li = link_to "#{t('common.view')} đơn hàng", export_path(pay.export), target: "_blank"
+                br /
+              - if (can? :show, pay) && (pay.payment_by != nil)
+                li = link_to "PDF", pay_path(pay, format: :pdf), target: "_blank"
+                br /
+              - if (can? :cancel, pay) && (pay.status == 'temporary')
+                li = link_to "Huỷ", cancel_pay_path(pay), method: :post
+              - if (can? :official, pay) && (pay.status == 'temporary') && (pay.payment_by != nil)
+                li = link_to "Hoàn thành", official_pay_path(pay), method: :post
+  = will_paginate @pays, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails

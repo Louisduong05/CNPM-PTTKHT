@@ -2,7 +2,7 @@ class Brand < ApplicationRecord
   acts_as_paranoid
   has_many :products
 
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: true
 
   after_save :update_is_active_products
 

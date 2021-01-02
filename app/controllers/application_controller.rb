@@ -1,4 +1,11 @@
 class ApplicationController < ActionController::Base
+  rescue_from CanCan::AccessDenied do |exception|
+    respond_to do |format|
+      format.html {
+        redirect_to root_path, notice: 'Bạn không có quyền vào trang này'
+      }
+    end
+  end
   skip_before_action :verify_authenticity_token
 
 	before_action :authenticate_user!
@@ -9,10 +16,6 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     devise_controller? ? 'devise' : 'application'
-  end
-
-  def active_for_authentication?
-    super && is_active
   end
 
   def update_notification_status

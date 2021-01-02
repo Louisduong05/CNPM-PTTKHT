@@ -5,10 +5,12 @@ CNPMPttkht.statistical = {
         let toDate = $('#toDate').val();
         let fromDate = $('#fromDate').val();
         let searchType = $('#type').val();
+        let productId = $('#product').val();
         let data = {
           to_date: toDate,
           from_date: fromDate,
-          type: searchType
+          type: searchType,
+          product_id: productId
         }
         if (data !== {}) {
           $.ajax({

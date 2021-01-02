@@ -5,8 +5,8 @@ class ExportedItem < ApplicationRecord
   belongs_to :product, required: true
   belongs_to :warehouse
 
-  validates :quantity,     presence: true
-  validates :quantity,     numericality: { greater_than: 0 }
+  validates :quantity, presence: true, numericality: { greater_than: 0 }
+  validates :product, uniqueness: { scope: :export }
 
   before_validation :export_product, on: :create
   after_create :update_product_and_warehouse
@@ -27,7 +27,7 @@ class ExportedItem < ApplicationRecord
       ::Staff.all.each do |importer|
         Notification.create(user: importer, link: "/products/#{product.id}", message: "Cần nhập thêm " + product.name)
       end
-      errors.add(:quantity, ':' + 'Products in warehouse currently are not enough')
+      errors.add(:quantity, ':' + 'Hiện tại trong kho không đủ')
       return false
     else
       add_values

@@ -1,3 +1,5 @@
 class StatisticalController < ApplicationController
-  def index; end
+  def index
+    @products = Product.where(is_active: true)
+  end
 end

@@ -1,7 +1,9 @@
 class AccountsController < ApplicationController
   load_and_authorize_resource class: "User" 
 
-  def index; end
+  def index
+    @accounts = @accounts.order("id ASC").paginate(:page => params[:page], :per_page => 3)
+  end
 
   def new; end
 
@@ -13,11 +15,6 @@ class AccountsController < ApplicationController
     end
   end
 
-  def unactive
-    @account.update(is_active: !@product.is_active)
-    redirect_to products_path, notice: t('common.notice.save_success')
-  end
-
   def show; end
 
   def edit; end
@@ -26,13 +23,17 @@ class AccountsController < ApplicationController
     if @account.update account_params
       redirect_to accounts_path, notice: t('common.notice.save_success')
     else
-      render 'edit', notice: t('common.notice.save_success')
+      render 'edit', notice: t('common.notice.save_errors')
     end  
   end
 
   def destroy
-    @account.destroy
-    redirect_to accounts_path, notice: t('common.notice.save_success')
+    pre_is_active = @account.is_active
+    if @account.update(is_active: !pre_is_active)
+      redirect_to accounts_path, notice: t('common.notice.save_success')
+    else
+      render 'index', notice: t('common.notice.save_errors')
+    end
   end
 
   private

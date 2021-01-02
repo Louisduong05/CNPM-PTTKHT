@@ -38,10 +38,4 @@ class ImportedItem < ApplicationRecord
     errors.add(:quantity, ':The current warehouse does not have enough spaceh')
     false
   end
-
-  private
-
-  def plus_current_warehouse
-    warehouse.current.to_i + product.size*quantity
-  end
 end

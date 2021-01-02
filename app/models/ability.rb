@@ -8,13 +8,14 @@ class Ability
       can :manage, :all
     end
     if user.type == "Staff"
-      can :index, Product
+      can [:index, :show], Product
       can :index, Supplier
       can :index, Customer
-      can [:index, :new, :create, :show], Export
-      can [:index, :new, :create, :show], ExportedItem
-      can [:index, :new, :create, :show], Import
-      can [:index, :new, :create, :show], ImportedItem
+      can [:index, :new, :create, :show, :edit, :cancel, :official], Pay, user_id: user.id
+      can [:index, :new, :create, :show, :edit, :cancel, :official], Export, user_id: user.id
+      can [:index, :new, :create, :show, :edit], ExportedItem
+      can [:index, :new, :create, :show, :edit, :cancel, :official], Import, user_id: user.id
+      can [:index, :new, :create, :show, :edit], ImportedItem
       can :index, Brand
       can [:index, :seen, :show_all], Notification
     end

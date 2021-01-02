@@ -3,12 +3,30 @@ class ImportsController < ApplicationController
   
   def index
     @import_filter = ImportFilter.new(@imports, import_filter_params)
-    @imports = @import_filter.result
+    @imports = @import_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
     @import = Import.new
   end
 
   def new
     @import.imported_items.new
+  end
+
+  def official
+    if @import.status == 'temporary'
+      @import.update(status: 'official')
+      redirect_to imports_path, notice: t('common.notice.save_success')
+    else
+      redirect_to imports_path, notice: 'Đơn đã kết thúc'
+    end
+  end
+
+  def cancel
+    if @import.status == 'temporary'
+      @import.update(status: 'cancel')
+      redirect_to imports_path, notice: t('common.notice.save_success')
+    else
+      redirect_to imports_path, notice: 'Đơn đã được hoàn thành'
+    end
   end
 
   def create
@@ -32,6 +50,17 @@ class ImportsController < ApplicationController
   end
 
   def edit; end
+
+  def update
+    if @import.update import_params
+      redirect_to imports_path, notice: t('common.notice.save_success')
+    else
+      # error_message = @import.errors.messages.values.flatten.join(", ")
+      # flash.now[:notice] = error_message if error_message.present?
+      # flash.now[:notice] = "Save errors" if error_message.blank?
+      render 'new', notice: t('common.notice.save_errors')
+    end
+  end
 
   private
 

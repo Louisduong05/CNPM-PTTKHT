@@ -1,7 +1,15 @@
 class StatisticalService
   class << self
-    def call(to_date, from_date, type)
-      products = ::Product.includes(:exported_items, :imported_items).all
+    def call(params)
+      to_date = params[:to_date]
+      from_date = params[:from_date]
+      type = params[:type]
+      product_id = params[:product_id]
+      if product_id.present?
+        products = ::Product.includes(:exported_items, :imported_items).where(id: product_id)
+      else
+        products = ::Product.includes(:exported_items, :imported_items).all
+      end
       result =
         if type == 'Import'
           imports(to_date, from_date, products)
@@ -18,9 +26,9 @@ class StatisticalService
     def exports(to_date, from_date, products)
       data = []
       products.each  do |product|
-        next if product.exported_items.blank?
+        next if product.export_offi.blank?
 
-        exported_items = compare_date(to_date, from_date, product.exported_items)
+        exported_items = compare_date(to_date, from_date, product.export_offi)
         data << format_data_export(exported_items, product) if exported_items.present?
       end
       data
@@ -29,9 +37,9 @@ class StatisticalService
     def imports(to_date, from_date, products)
       data = []
       products.each  do |product|
-        next if product.imported_items.blank?
+        next if product.import_offi.blank?
 
-        imported_items = compare_date(to_date, from_date, product.imported_items)
+        imported_items = compare_date(to_date, from_date, product.import_offi)
         data << format_data_import(imported_items, product) if imported_items.present?
       end
       data
@@ -39,7 +47,7 @@ class StatisticalService
 
     def format_data_import(imported_items, product)
       {
-        product_id: "PRODUCT / #{product.id}",
+        product_id: "ID SẢN PHẨM / #{product.id}",
         product_name: product.name,
         total_quantity: total_quantity(imported_items),
         price_range_max: imported_items.map(&:unit_price).max,
@@ -52,7 +60,7 @@ class StatisticalService
 
     def format_data_export(exported_items, product)
       {
-        product_id: "PRODUCT / #{product.id}",
+        product_id: "ID SẢN PHẨM / #{product.id}",
         product_name: product.name,
         total_quantity: total_quantity(exported_items),
         price_range_max: exported_items.map(&:unit_price).max,
@@ -67,7 +75,7 @@ class StatisticalService
       items.select do |item|
         case [to_date.present?, from_date.present?]
         when [false, true]
-          item.created_at >= item.to_date.beginning_of_day
+          item.created_at >= from_date.to_date.beginning_of_day
         when [true, true]
           item.created_at >= from_date.to_date.beginning_of_day &&
           item.created_at <= to_date.to_date.end_of_day
@@ -91,7 +99,7 @@ class StatisticalService
       details = []
       imported_items.each do |imported_item|
         details << {
-          imported_id: "IMPORT / #{imported_item.import.id}",
+          imported_id: "ID XUẤT HÀNG / #{imported_item.import.id}",
           user: imported_item.import.user.name,
           user_id: imported_item.import.user.id,
           quantity: imported_item.quantity,
@@ -105,7 +113,7 @@ class StatisticalService
       details = []
       exported_items.each do |exported_item|
         details << {
-          imported_id: "EXPORT / #{exported_item.export.id}",
+          imported_id: "ID NHẬP HÀNG / #{exported_item.export.id}",
           user: exported_item.export.user.name,
           user_id: exported_item.export.user.id,
           quantity: exported_item.quantity,

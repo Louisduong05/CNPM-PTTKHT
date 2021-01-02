@@ -34,5 +34,6 @@
                 li = link_to t('common.edit'), edit_supplier_path(supplier)
               - if can? :destroy, supplier               
                 li = link_to t('common.delete'), supplier_path(supplier), method: :delete
+  = will_paginate @suppliers, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
 
             

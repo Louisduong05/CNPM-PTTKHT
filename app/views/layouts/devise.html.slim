@@ -9,3 +9,5 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   body.layouts-devise class=page_class  
     main = yield
+
+    = javascript_tag open_message(flash)
