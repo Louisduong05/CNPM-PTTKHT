@@ -3,35 +3,49 @@ p.button = link_to 'Trở về danh sách', exports_path
 table.table.table-striped
   thead
     tr
-      th = t('table.exports.id')
+      th Mã đơn hàng
       th = t('table.exports.user_name')
-      th = t('table.exports.unit_price')
       th = t('table.exports.customer_name')
   tbody
     tr
-      td = export.id
+      td = export.pay.code
       td = export.user.name
-      td = export.total_price
       td = export.customer&.name
 h2 = t('table.exported_items.show_exi')
 
 table.table.table-striped
   thead
     tr
-      th = t('table.exported_items.id')
-      th = t('table.exported_items.quantity')
-      th = t('table.exported_items.unit_price')
+      th STT
       th = t('table.exported_items.product_name')
+      th = t('table.exported_items.quantity')
+      th giá gốc
+      th VAT
+      th Phí
+      th Giá sau khi cộng
+      th Tổng
   tbody
-    - export.exported_items.each do |item|
+    - export.exported_items.each_with_index do |item, index|
       tr
-        td = item.id
-        td = item.quantity
-        td = item.unit_price
+        td = index + 1
         td = item.product.name
+        td = item.quantity
+        td = item.product.original_price
+        td 10%
+        td 2%
+        td = item.unit_price
+        td = item.quantity*item.unit_price
   tfoot
     tr
       td
-        ul 
-          - if can? :show, export
-            li = link_to 'PDF', export_path(export, :format => :pdf), target: "_blank"
+      td
+      td
+      td
+      td
+      td
+      td
+        b Tổng cộng: 
+        = export.total_price
+  /       ul 
+  /         - if can? :show, export
+  /           li = link_to 'PDF', export_path(export, :format => :pdf), target: "_blank"

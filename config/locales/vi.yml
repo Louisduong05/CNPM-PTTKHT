@@ -84,6 +84,10 @@ vi:
           temporary: Chờ
           official: Hoàn thành
           cancel: Huỷ
+        payment_bies:
+          momo: Momo
+          bank: Ngân hàng
+          cash: Tiền mặt
     errors:
       messages:
         record_invalid: 'Có các lỗi sau: %{errors}'
@@ -120,6 +124,7 @@ vi:
       exported_item: Chi tiết xuất hàng
       import: Nhập hàng
       imported_item: Chi tiết nhập hàng
+      pay: Đơn hàng
   date:
     abbr_day_names:
     - CN

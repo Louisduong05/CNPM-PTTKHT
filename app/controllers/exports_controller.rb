@@ -3,7 +3,7 @@ class ExportsController < ApplicationController
   
   def index
     @export_filter = ExportFilter.new(@exports, export_filter_params)
-    @exports = @export_filter.result.order("id ASC").paginate(:page => params[:page], :per_page => 3)
+    @exports = @export_filter.result.order("exports.id ASC").paginate(:page => params[:page], :per_page => 3)
     @export = Export.new
   end
 
@@ -74,6 +74,6 @@ class ExportsController < ApplicationController
   def export_filter_params
     return {} if params[:export_filter].nil?
 
-    params.require(:export_filter).permit(:user_id)
+    params.require(:export_filter).permit(:user_id, :status, :from, :to)
   end
 end

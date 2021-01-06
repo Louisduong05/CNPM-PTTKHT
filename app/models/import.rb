@@ -1,15 +1,17 @@
 class Import < ApplicationRecord
   belongs_to :user
-  has_many :imported_items, dependent: :destroy 
+  has_many :imported_items, dependent: :destroy
+  has_one :pay, as: :pay_type
   belongs_to :supplier
 
   enum status: ['temporary', 'official', 'cancel']
 
   accepts_nested_attributes_for :imported_items, allow_destroy: true
-  after_save :import_products
+  before_save :import_products, on: :update
+  after_create :create_pay
 
   def name
-    "IMPORT_#{id}"
+    "Nhập hàng #{id}"
   end
 
   def import_products
@@ -33,6 +35,11 @@ class Import < ApplicationRecord
     end
     
     sum
+  end
+
+  def create_pay
+    code = SecureRandom.urlsafe_base64(3, false)
+    Pay.create!(code: "#{code}imp#{id}", pay_type_id: id, user_id: user_id, pay_type_type: 'Import')
   end
 
   private

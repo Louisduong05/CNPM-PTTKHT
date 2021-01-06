@@ -8,6 +8,10 @@ Rails.application.routes.draw do
       member do 
         put :unactive
       end
+
+      collection do
+        get :statistical
+      end
     end
 
     # resources :product_items,   only: [:index]

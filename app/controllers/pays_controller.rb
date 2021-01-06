@@ -7,11 +7,16 @@ class PaysController < ApplicationController
   end
 
   def show
+    if @pay.pay_type_type == 'Export'
+      tem = "pays/show_export.html.slim"
+    else
+      tem = "pays/show_import.html.slim"
+    end
     respond_to do |format|
       format.pdf do
         render pdf: "Đơn hàng #{@pay.code}",
         page_size: 'A4',
-        template: "pays/show.html.slim",
+        template: tem,
         layout: "pdf.html",
         orientation: "Landscape",
         lowquality: true,
@@ -24,7 +29,7 @@ class PaysController < ApplicationController
   def edit; end
 
   def update
-    if @pay.update pay_params
+    if @pay.update! pay_params
       redirect_to pays_path, notice: t('common.notice.save_success')
     else
       # error_message = @export.errors.messages.values.flatten.join(", ")
@@ -57,7 +62,7 @@ class PaysController < ApplicationController
       :payment_by
     )
     data[:user_id] = current_user.id
-    data[:payment_by] = data[:payment_by].to_i
+    data[:payment_by] = data[:payment_by].to_i if data[:payment_by].present?
 
     data
   end
@@ -67,7 +72,12 @@ class PaysController < ApplicationController
       return {} 
     else  
       params.require(:pay_filter).permit(
-        :status
+        :code,
+        :status,
+        :type,
+        :user_id,
+        :from,
+        :to
       )
     end 
   end

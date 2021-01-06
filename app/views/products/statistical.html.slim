@@ -1,0 +1,16 @@
+= render 'search'
+
+.block  
+  h1  Thống kê hàng tồn
+  table.table.table-striped
+    thead
+      tr
+        th = t('table.products.name')
+        th Số lượng tồn
+    tbody
+      - @products.each do |product|
+        tr
+          td 
+            = product&.name
+          td
+            = product.quantity

@@ -27,8 +27,12 @@ class CustomersController < ApplicationController
   end
 
   def destroy
-    @customer.destroy
-    redirect_to customers_path, notice: t('common.notice.save_success')
+    if @customer.exports.present?
+      redirect_to customers_path, notice: "#{@customer.name} đã phát sinh giao dịch"
+    else
+      @customer.destroy
+      redirect_to customers_path, notice: t('common.notice.save_success')
+    end
   end
 
   private

@@ -2,7 +2,6 @@ class Product < ApplicationRecord
   has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/assets/:style/missing.png"
   has_many :exported_items
   has_many :imported_items
-  belongs_to :brand
 
 	validates :name, :size,	:original_price, presence: true
 	validates :name, uniqueness: true
@@ -22,7 +21,7 @@ class Product < ApplicationRecord
 
   def export_offi
     exported_items.includes(export: :pay).select do |exported_item|
-      exported_item.export&.pay&[][:status] == 'official'
+      exported_item.export&.pay&.status == 'official'
     end
   end
 

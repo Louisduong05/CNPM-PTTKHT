@@ -1,29 +1,26 @@
 CNPMPttkht.warehouses = {
   index: {
     init: function() {
-      fetch("//localhost:3000/api/warehouses")
+      fetch("//localhost:3030/api/warehouses")
         .then(res => res.json())
         .then(warehouses => {
           var ctx = document.getElementById('myChart').getContext('2d');
-          $.each(warehouses, function( index, value ) {
-            var current = value.current
-            var excess_capacity = value.capacity - current
-            var name = value.name
+            var names = []
+            var values = []
+            $.each(warehouses, function(i, v) {
+              names.push(v.name)
+              values.push(v.current)
+            });
             var myChart = new Chart(ctx, {
               type: 'pie',
               data: {
-              labels: ["Hiện tại", "Còn lại"],
+              labels: names,
               datasets: [{
                 label: '# of Votes',
-                data: [current, excess_capacity],
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)'
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)'
-                ],
+                data: values,
+                backgroundColor: palette('tol', values.length).map(function(hex) {
+                  return '#' + hex;
+                }),
                 borderWidth: 1
                 }]
               },
@@ -34,14 +31,8 @@ CNPMPttkht.warehouses = {
                       beginAtZero: true
                     }
                   }]
-                },              
-                title: {
-                  display: true,
-                  position: 'bottom',
-                  text: name
                 },
               }
-          });
           });
         });
     }

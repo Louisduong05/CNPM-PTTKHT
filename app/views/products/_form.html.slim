@@ -1,9 +1,8 @@
 = simple_form_for @product do |f|
   = f.input :name
-  = f.input :original_price, readonly: true
-  = f.input :quantity, readonly: true
+  = f.input :original_price, as: :hidden, readonly: true
+  = f.input :quantity, as: :hidden, readonly: true
   = f.input :size
-  = f.association :brand
   = f.input :remarks
   = f.input :image, as: :file
   = f.input :is_active, as: :select

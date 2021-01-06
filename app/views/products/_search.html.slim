@@ -1,4 +1,3 @@
 = simple_form_for @product_filter, url: '', method: :get do |f|
-  = f.input :keyword, label: t('common.product_name') 
-  = f.input :brand_id, collection: Brand.where(is_active: true), label: t('common.brand_select')
+  = f.input :keyword, label: t('common.product_name')
   = f.button :submit, t('common.search')

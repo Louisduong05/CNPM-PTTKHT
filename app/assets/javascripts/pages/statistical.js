@@ -2,8 +2,8 @@ CNPMPttkht.statistical = {
   index: {
     init: function() {
       $( "#submit_search" ).on('click', function() {
-        let toDate = $('#toDate').val();
-        let fromDate = $('#fromDate').val();
+        let toDate = $('#to').val();
+        let fromDate = $('#from').val();
         let searchType = $('#type').val();
         let productId = $('#product').val();
         let data = {
@@ -40,11 +40,11 @@ CNPMPttkht.statistical = {
             dataTreeStartExpanded:true,
             columns:[  
               {title:"Id", field:"id"},
-              {title:"Name", field:"product_name"},
-              {title:"Quantity", field:"quantity"},
-              {title:"Price", field:"price"},
-              {title: "Time", field:"time"},
-              {title: "Users", field: "users"}
+              {title:"Tên sản phẩm", field:"product_name"},
+              {title:"Số lượng", field:"quantity"},
+              {title:"Giá", field:"price"},
+              {title: "Thời gian", field:"time"},
+              {title: "Người nhập", field: "users"}
           ],
         });
         

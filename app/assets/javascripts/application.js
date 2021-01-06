@@ -5,6 +5,7 @@
 //= require jquery_nested_form
 //= require chart/Chart.js
 //= require datepicker/js/bootstrap-datepicker
+//= require palette/palette.js
 //= require pagination/pagination
 //= require tabulator/dist/js/tabulator
 //= require moment

@@ -1,3 +1,7 @@
 = simple_form_for @export_filter, url: '', method: :get do |f|
-  = f.input :user_id, collection: User.all, label: t('table.exports.user_name')
+  - if current_user.type == 'Admin' 
+    = f.input :user_id, collection: User.all, label: t('table.exports.user_name')
+  = f.input :status, collection: Pay.translate_enum_collection(:status), label: 'Trạng thái'
+  = f.input :from, label: 'Từ ngày', input_html: {"data-provide": "datepicker", "auto-complete": "off", id: :from}
+  = f.input :to, label: 'Tới ngày', input_html: {"data-provide": "datepicker", "auto-complete": "off", id: :to}
   = f.button :submit, t('common.search'), class: 'color-btn'

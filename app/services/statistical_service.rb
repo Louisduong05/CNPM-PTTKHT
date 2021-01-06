@@ -99,8 +99,8 @@ class StatisticalService
       details = []
       imported_items.each do |imported_item|
         details << {
-          imported_id: "ID XUẤT HÀNG / #{imported_item.import.id}",
-          user: imported_item.import.user.name,
+          imported_id: "HOÁ ĐƠN NHẬP HÀNG / #{imported_item.import.pay.code}",
+          user: imported_item.import.user.username,
           user_id: imported_item.import.user.id,
           quantity: imported_item.quantity,
           unit_price: imported_item.unit_price, 
@@ -114,7 +114,7 @@ class StatisticalService
       exported_items.each do |exported_item|
         details << {
           imported_id: "ID NHẬP HÀNG / #{exported_item.export.id}",
-          user: exported_item.export.user.name,
+          user: exported_item.export.user.username,
           user_id: exported_item.export.user.id,
           quantity: exported_item.quantity,
           unit_price: exported_item.unit_price, 

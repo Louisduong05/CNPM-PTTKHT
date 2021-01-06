@@ -87,6 +87,6 @@ class ImportsController < ApplicationController
   def import_filter_params
     return {} if params[:import_filter].nil?
 
-    params.require(:import_filter).permit(:user_id)
+    params.require(:import_filter).permit(:user_id, :status, :from, :to)
   end
 end

@@ -32,8 +32,12 @@ class SuppliersController < ApplicationController
   end
 
   def destroy
-    @supplier.destroy
-    redirect_to suppliers_path, notice: "Supplier has been deleted successfully"
+    if @supplier.imports.present?
+      redirect_to suppliers_path, notice: "#{@supplier.name} đã phát sinh giao dịch"
+    else
+      @supplier.destroy
+      redirect_to suppliers_path, notice: t('common.notice.save_success')
+    end
   end
 
   # def update_priority

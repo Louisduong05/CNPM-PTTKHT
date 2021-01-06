@@ -1,14 +1,20 @@
 class Api::WarehousesController < Api::BaseController
   def index
-    warehouses = Warehouse.all
+    warehouse = Warehouse.first
+    excess_capacity = warehouse.capacity - warehouse.current
+    products = Product.where('products.quantity > 0')
     res = []
-    warehouses.each do |warehouse|
+    products.each do |product|
       res << {
-        name: warehouse.name,
-        current: warehouse.current,
-        capacity: warehouse.capacity
+        name: product.name,
+        current: product.quantity*product.size
       }
     end
+
+    res << {
+      name: 'còn lại',
+      current: warehouse.current
+    }
     render json: res, status: 200
   end
 end

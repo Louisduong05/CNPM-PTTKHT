@@ -1,5 +1,7 @@
 vi:
   table:
+    common:
+      status: Trạng thái
     notification:
       id: ID
       message: Tin nhắn

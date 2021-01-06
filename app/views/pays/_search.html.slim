@@ -1,3 +1,9 @@
 = simple_form_for @pay_filter, url: '', method: :get do |f|
+  - if current_user.type == 'Admin' 
+    = f.input :user_id, collection: User.all, label: t('table.exports.user_name')
+  = f.input :code, label: 'Mã hoá đơn'
   = f.input :status, label: 'Trạng thái', collection: Pay.translate_enum_collection(:status)
+  = f.input :type, label: 'Loại', collection: [["Nhập", 'Import'],["Xuất", 'Export']]
+  = f.input :from, label: 'Từ ngày', input_html: {"data-provide": "datepicker", "auto-complete": "off", id: :from}
+  = f.input :to, label: 'Tới ngày', input_html: {"data-provide": "datepicker", "auto-complete": "off", id: :to}
   = f.button :submit, t('common.search')

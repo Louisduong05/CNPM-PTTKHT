@@ -12,6 +12,9 @@
               br/
               | Ngày tạo:
               b= @pay.created_at.strftime('%d/%m/%Y')
+              br / 
+              b Loại hoá đơn:
+              | Nhập hàng
 
     tr.information
       td colspan="4" 
@@ -27,13 +30,13 @@
               br/
               i.fas.fa-phone
               | 09654061112
-            td
-              b= @pay.export.customer.name
+            td'
+              b= @pay.pay_type.supplier.name
               br/
-              = @pay.export.customer.address
+              = @pay.pay_type.supplier.address
               br/
               i.fas.fa-phone
-              = @pay.export.customer.phone
+              = @pay.pay_type.supplier.phone
     tr.heading
       td Phương thức thanh toán
       td colspan="2" 
@@ -54,16 +57,16 @@
       td.right Giá
       td.right Số lượng
       td Tổng
-    - @pay.export.exported_items.each do |exported_item|
+    - @pay.pay_type.imported_items.each do |imported_item|
       tr.item
         td
-          = exported_item.product.name
+          = imported_item.product.name
         td.right
-          = number_to_currency(exported_item.unit_price)
+          = number_to_currency(imported_item.unit_price)
         td.right
-          | x #{exported_item.quantity}
+          | x #{imported_item.quantity}
         td
-          = number_to_currency(exported_item.unit_price * exported_item.quantity)
+          = number_to_currency(imported_item.unit_price * imported_item.quantity)
     tr
       td colspan="4" 
     tr.heading
@@ -71,7 +74,7 @@
       td
         b Tổng cộng:
       td
-        b= number_to_currency(@pay.export.total_price)
+        b= number_to_currency(@pay.pay_type.total_price)
     / tr.bottom.right
     /   td colspan="4" 
     /     b Người xuất

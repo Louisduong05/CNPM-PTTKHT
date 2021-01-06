@@ -10,7 +10,7 @@ class Warehouse < ApplicationRecord
   def check_current
     if current.to_f/capacity.to_f > 0.9
       Admin.all.each do |admin|
-        Notification.create(user: admin, link: "/warehouses", message: "The warehouse is full")
+        Notification.create(user: admin, link: "/warehouses", message: "Nhà kho sắp đầy")
       end
     end
   end

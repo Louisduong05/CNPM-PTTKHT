@@ -1,0 +1,94 @@
+.pay-box
+  table cellpadding="0" cellspacing="0" 
+    tr.top
+      td colspan="4" 
+        table
+          tr
+            td.title
+              = image_tag wicked_pdf_asset_base64('shared/logo.png')
+            td
+              | Mã đơn hàng #:
+              b= @pay.code
+              br/
+              | Ngày tạo:
+              b= @pay.created_at.strftime('%d/%m/%Y')
+              br / 
+              b Loại hoá đơn:
+              | Xuất hàng
+    tr.information
+      td colspan="4" 
+        table
+          tr
+            td
+              b Công ty YMPLIFY
+              br/
+              | 135 Trần hưng đạo Quận 5 Thành phố HCM
+              br/
+              i.far.fa-envelope
+              | sample@mail.com
+              br/
+              i.fas.fa-phone
+              | 09654061112
+            td
+              b= @pay.pay_type.customer.name
+              br/
+              = @pay.pay_type.customer.address
+              br/
+              i.fas.fa-phone
+              = @pay.pay_type.customer.phone
+    tr.heading
+      td Phương thức thanh toán
+      td colspan="2" 
+      td.right Thông tin thanh toán
+    tr.details
+      td = @pay.payment_by
+      td colspan="2" 
+      td.right 
+        - case @pay.payment_by
+        - when 'momo'
+          | 0965406112
+        - when 'bank'
+          | ACB - 7648947 - DUONG NGOC THACH
+        - else
+          | none
+    tr.heading
+      td Sản phẩm
+      td.right Giá
+      td.right Số lượng
+      td Tổng
+    - @pay.pay_type.exported_items.each do |exported_item|
+      tr.item
+        td
+          = exported_item.product.name
+        td.right
+          = number_to_currency(exported_item.product.original_price)
+        td.right
+          | x #{exported_item.quantity}
+        td
+          = number_to_currency(exported_item.product.original_price * exported_item.quantity)
+    tr
+      td colspan="4" 
+    tr
+      td colspan="2" 
+      td
+        b
+          | VAT (10%)
+      td ="+ #{number_to_currency(@pay.pay_type.total_price/1.12*0.1)}"
+    tr
+      td colspan="2" 
+      td
+        b
+          | Phụ thu (2%)
+      td  = "+ #{number_to_currency(@pay.pay_type.total_price/1.12* 0.02)}"
+    tr.heading
+      td colspan="2" 
+      td
+        b Tổng cộng:
+      td
+        b= number_to_currency(@pay.pay_type.total_price)
+    / tr.bottom.right
+    /   td colspan="4" 
+    /     b Người xuất
+    /     br /
+    /     small Ký và ghi rõ họ tên
+

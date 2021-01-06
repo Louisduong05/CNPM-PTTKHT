@@ -8,21 +8,27 @@
   table.table.table-striped
     thead
       tr
-        th = t('table.exports.id')
-        th = t('table.exports.user_name')
-        th = t('table.exports.unit_price')
-        th = t('table.exports.customer_name')        
+        th Mã thanh toán
+        th = t('table.exports.customer_name')
+        th = t('table.exports.unit_price')   
+        th = t('table.exports.user_name')     
+        th = t('table.common.status')        
         th = t('common.action')
     tbody
       - @exports.each do |export|
         tr
-          td = export.id
-          td = export.user.username
-          td = export.total_price
+          td = export.pay.code
           td = export.customer&.name
+          td = export.total_price
+          td = export.user.username
+          td = Pay.translate_enum_name(:status, export.pay.status)
           td 
             ul.actions
               - if can? :show, export
                 li = link_to t('common.view'), export_path(export)
+                br /
+              - if can? :index, export.pay
+                li = link_to 'Kiểm tra thanh toán', export_path(export)
+                br /
   = will_paginate @exports, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
                   

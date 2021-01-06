@@ -8,6 +8,12 @@ class ProductsController < ApplicationController
 
   def new; end
 
+  def statistical
+    @products = @products.where('products.quantity > 0')
+    @product_filter = ProductFilter.new(@products, product_filter_params)
+    @products = @product_filter.result.order("id ASC")
+  end
+
   def create
     if @product.save 
       redirect_to products_path, notice: t('common.notice.save_success')
@@ -36,7 +42,7 @@ class ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :original_price, :country, :remarks, :supplier_id, :brand_id, :image, :size)
+    params.require(:product).permit(:name, :original_price, :country, :remarks, :supplier_id, :image, :size)
   end
 
   def product_filter_params
@@ -44,8 +50,7 @@ class ProductsController < ApplicationController
       return {} 
     else  
       params.require(:product_filter).permit(
-        :keyword,
-        :brand_id
+        :keyword
       )
     end  
   end

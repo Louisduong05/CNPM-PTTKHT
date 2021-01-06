@@ -8,18 +8,20 @@
   table.table.table-striped
     thead
       tr
-        th = t('table.imports.id')
+        th Mã đơn hàng
         th = t('table.imports.user_name')
         th = t('table.imports.unit_price')
         th = t('table.imports.supplier_name')        
+        th = t('table.common.status')        
         th = t('common.action')
     tbody
       - @imports.each do |import|
         tr
-          td = import.id
+          td = import.pay.code
           td = import.user.username
           td = import.total_price 
           td = import.supplier&.name
+          td = Import.translate_enum_name(:status, import.status)
           td 
             ul.actions
               - if can? :show, import
@@ -27,9 +29,9 @@
               -if import.status == 'temporary'
                 - if can? :edit, import
                   li = link_to t('common.edit'), edit_import_path(import) 
-                - if can? :official, import
-                  li = link_to t('common.official'), official_import_path(import), method: :post
-                - if can? :cancel, import
-                  li = link_to t('common.cancel'), cancel_import_path(import), method: :post
+                / - if can? :official, import
+                /   li = link_to t('common.official'), official_import_path(import), method: :post
+                / - if can? :cancel, import
+                /   li = link_to t('common.cancel'), cancel_import_path(import), method: :post
   = will_paginate @imports, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails
               

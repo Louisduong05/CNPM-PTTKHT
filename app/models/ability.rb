@@ -11,11 +11,11 @@ class Ability
       can [:index, :show], Product
       can :index, Supplier
       can :index, Customer
-      can [:index, :new, :create, :show, :edit, :cancel, :official], Pay, user_id: user.id
-      can [:index, :new, :create, :show, :edit, :cancel, :official], Export, user_id: user.id
-      can [:index, :new, :create, :show, :edit], ExportedItem
-      can [:index, :new, :create, :show, :edit, :cancel, :official], Import, user_id: user.id
-      can [:index, :new, :create, :show, :edit], ImportedItem
+      can [:index, :update, :new, :create, :show, :edit, :cancel, :official], Pay, user_id: user.id
+      can [:index, :update, :new, :create, :show, :edit, :cancel, :official], Export, user_id: user.id
+      can [:index, :update, :new, :create, :show, :edit], ExportedItem
+      can [:index, :update, :new, :create, :show, :edit, :cancel, :official], Import, user_id: user.id
+      can [:index, :update, :new, :create, :show, :edit], ImportedItem
       can :index, Brand
       can [:index, :seen, :show_all], Notification
     end

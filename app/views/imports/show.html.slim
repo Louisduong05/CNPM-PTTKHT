@@ -4,32 +4,41 @@
   table.table.table-striped
     thead
       tr
-        th = t('table.imports.id')
+        th Mã đơn hàng
         th = t('table.imports.user_name')
-        th = t('table.imports.unit_price')
-        th = t('table.imports.supplier')
+        th Tên công ty
     tbody
       tr
-        td = @import.id
-        td = @import.user_id
-        td = @import.total_price
+        td = @import.pay.code
+        td = "#{@import.user.firstname} (#{(@import.user.type)})"
         td = @import.supplier&.name
   h2 = t('table.imported_items.show_imi')
 
   table.table.table-striped
     thead
       tr
-        th Id
-        th Quantity
-        th Price
-        th Product
+        th Stt
+        th Số lượng
+        th giá
+        th Tên sản phẩm
+        th tổng
     tbody
-      - @import.imported_items.each do |item|
+      - @import.imported_items.each_with_index do |item, index|
         tr
-          td = item.id
+          td = index + 1
           td = item.quantity
           td = item.unit_price
           td = item.product.name
+          td = item.quantity*item.unit_price
+    tfoot
+      tr
+        td
+        td
+        td
+        td
+        td 
+          b Tổng cộng: 
+          = @import.total_price  
 
 
 

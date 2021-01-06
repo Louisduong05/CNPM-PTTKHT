@@ -12,8 +12,6 @@
         th = t('table.products.name')
         th = t('table.products.original_price')
         th = t('table.products.unit_price')
-        th = t('table.products.quantity')
-        th = t('table.products.brand')
         th = t('table.products.size')
         th = t('table.products.remarks')
         th = t('table.products.image')
@@ -30,10 +28,6 @@
             = product.original_price
           td
             = product.unit_price_with_tax
-          td
-            = product.quantity
-          td
-            = product.brand&.name
           td
             = product.size
           td
