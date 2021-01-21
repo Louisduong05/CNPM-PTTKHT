@@ -5,13 +5,15 @@
     thead
       tr
         th Mã đơn hàng
-        th = t('table.imports.user_name')
         th Tên công ty
+        th = t('table.imports.user_name')
+        th Ngày tạo
     tbody
       tr
         td = @import.pay.code
-        td = "#{@import.user.firstname} (#{(@import.user.type)})"
         td = @import.supplier&.name
+        td = "#{@import.user.firstname} (#{(@import.user.type)})"
+        td = @import.created_at.strftime('%d/%m/%Y')
   h2 = t('table.imported_items.show_imi')
 
   table.table.table-striped

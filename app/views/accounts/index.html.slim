@@ -13,6 +13,7 @@
         th = t('table.accounts.dob')
         th = t('table.accounts.phone')
         th = t('table.accounts.address')
+        th Trạng thái
         th = t('common.action')
     tbody
       - @accounts.each do |account|
@@ -25,8 +26,9 @@
           td = account.dob
           td = account.phone
           td = account.address
+          td = account.t_boolean(account.is_active)
           td 
             ul.actions
               li = link_to t('common.edit'), edit_account_path(account)
-              li = link_to t('common.delete'),account_path(account), method: :delete
+              li = link_to t('common.turn_off'),account_path(account), method: :delete
   = will_paginate @accounts, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails

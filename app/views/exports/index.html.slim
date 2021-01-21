@@ -11,7 +11,8 @@
         th Mã thanh toán
         th = t('table.exports.customer_name')
         th = t('table.exports.unit_price')   
-        th = t('table.exports.user_name')     
+        th = t('table.exports.user_name')
+        th Ngày tạo
         th = t('table.common.status')        
         th = t('common.action')
     tbody
@@ -19,8 +20,9 @@
         tr
           td = export.pay.code
           td = export.customer&.name
-          td = export.total_price
+          td = number_to_currency(export.total_price)
           td = export.user.username
+          td = export.created_at.strftime('%d/%m/%Y')
           td = Pay.translate_enum_name(:status, export.pay.status)
           td 
             ul.actions

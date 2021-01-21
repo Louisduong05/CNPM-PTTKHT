@@ -30,9 +30,10 @@ section.shared-sidebar
     li
       i.fa.fa-home aria-hidden="true"
       = link_to 'Thống kê hàng tồn', statistical_products_path
-    li
-      i.fa.fa-home aria-hidden="true"
-      = link_to t('common.statistical'), statistical_index_path
+    - if current_user.type == 'Admin'
+      li
+        i.fa.fa-home aria-hidden="true"
+        = link_to t('common.statistical'), statistical_index_path
     - if can? :index, User  
       li 
         i.fa.fa-cog aria-hidden="true"

@@ -8,7 +8,7 @@ class Ability
       can :manage, :all
     end
     if user.type == "Staff"
-      can [:index, :show], Product
+      can [:index, :show, :statistical], Product
       can :index, Supplier
       can :index, Customer
       can [:index, :update, :new, :create, :show, :edit, :cancel, :official], Pay, user_id: user.id
@@ -16,7 +16,6 @@ class Ability
       can [:index, :update, :new, :create, :show, :edit], ExportedItem
       can [:index, :update, :new, :create, :show, :edit, :cancel, :official], Import, user_id: user.id
       can [:index, :update, :new, :create, :show, :edit], ImportedItem
-      can :index, Brand
       can [:index, :seen, :show_all], Notification
     end
     # if user.type == "Importer"

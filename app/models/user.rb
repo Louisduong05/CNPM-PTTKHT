@@ -12,10 +12,14 @@ class User < ApplicationRecord
   has_many :notifications 
   has_many :product_items
 
-  enumerize :type, in: ["User", "Admin", "Staff"], default: "User"
+  enumerize :type, in: ["Admin", "Staff"], default: "Staff"
 
   def name
     "#{firstname}"
+  end
+
+  def t_boolean(expression)
+    (expression) ? 'Kích hoạt' : 'Không kích hoạt'
   end
 
   def active_for_authentication?

@@ -8,7 +8,11 @@ class Product < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   def tax
-    0.12
+    0.1
+  end
+
+  def interest
+    0.02
   end
 
   def total_price
@@ -16,7 +20,11 @@ class Product < ApplicationRecord
   end
 
   def unit_price_with_tax
-    original_price * tax + original_price
+    original_price * tax + original_price*interest + original_price
+  end
+
+  def unit_price_with_interest
+    original_price*interest + original_price
   end
 
   def export_offi

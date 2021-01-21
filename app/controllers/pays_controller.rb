@@ -42,18 +42,18 @@ class PaysController < ApplicationController
   def cancel
     if @pay.status == 'temporary'
       @pay.update(status: 'cancel')
-      redirect_to pays_path, notice: t('common.notice.save_success')
+      redirect_back(fallback_location: root_path, notice: t('common.notice.save_success')) 
     else
-      redirect_to pays_path, notice: 'Đơn hàng đã hoàn thành'
+      redirect_back(fallback_location: root_path, notice: 'Đơn hàng đã hoàn thành')
     end
   end
 
   def official
     if @pay.status == 'temporary'
       @pay.update(status: 'official')
-      redirect_to pays_path, notice: t('common.notice.save_success')
+      redirect_back(fallback_location: root_path, notice: t('common.notice.save_success'))
     else
-      redirect_to pays_path, notice: 'Đơn hàng đã hoàn thành'
+      redirect_back(fallback_location: root_path, notice: 'Đơn hàng đã hoàn thành')
     end
   end
 

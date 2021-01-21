@@ -1,3 +1,3 @@
 = simple_nested_form_for pay do |f|
-  = f.input :payment_by, collection: [[nil, nil], Pay.translate_enum_collection(:payment_by)].flatten, label: 'Loại thanh toán'
+  = f.input :payment_by, collection: Pay.translate_enum_collection(:payment_by), label: 'Loại thanh toán'
   = f.button :submit

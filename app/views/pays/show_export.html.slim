@@ -61,11 +61,11 @@
         td
           = exported_item.product.name
         td.right
-          = number_to_currency(exported_item.product.original_price)
+          = number_to_currency(exported_item.product.unit_price_with_interest)
         td.right
           | x #{exported_item.quantity}
         td
-          = number_to_currency(exported_item.product.original_price * exported_item.quantity)
+          = number_to_currency(exported_item.product.unit_price_with_interest * exported_item.quantity)
     tr
       td colspan="4" 
     tr
@@ -74,12 +74,6 @@
         b
           | VAT (10%)
       td ="+ #{number_to_currency(@pay.pay_type.total_price/1.12*0.1)}"
-    tr
-      td colspan="2" 
-      td
-        b
-          | Phụ thu (2%)
-      td  = "+ #{number_to_currency(@pay.pay_type.total_price/1.12* 0.02)}"
     tr.heading
       td colspan="2" 
       td

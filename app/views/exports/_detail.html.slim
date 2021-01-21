@@ -4,13 +4,15 @@ table.table.table-striped
   thead
     tr
       th Mã đơn hàng
-      th = t('table.exports.user_name')
       th = t('table.exports.customer_name')
+      th = t('table.exports.user_name')
+      th Ngày tạo
   tbody
     tr
       td = export.pay.code
-      td = export.user.name
       td = export.customer&.name
+      td = export.user.name
+      td = export.created_at.strftime('%d/%m/%Y')
 h2 = t('table.exported_items.show_exi')
 
 table.table.table-striped
@@ -19,9 +21,8 @@ table.table.table-striped
       th STT
       th = t('table.exported_items.product_name')
       th = t('table.exported_items.quantity')
-      th giá gốc
+      th giá xuất
       th VAT
-      th Phí
       th Giá sau khi cộng
       th Tổng
   tbody
@@ -30,11 +31,10 @@ table.table.table-striped
         td = index + 1
         td = item.product.name
         td = item.quantity
-        td = item.product.original_price
+        td = number_to_currency(item.product.original_price)
         td 10%
-        td 2%
         td = item.unit_price
-        td = item.quantity*item.unit_price
+        td = number_to_currency(item.quantity*item.unit_price)
   tfoot
     tr
       td
@@ -45,7 +45,7 @@ table.table.table-striped
       td
       td
         b Tổng cộng: 
-        = export.total_price
+        = number_to_currency(export.total_price)
   /       ul 
   /         - if can? :show, export
   /           li = link_to 'PDF', export_path(export, :format => :pdf), target: "_blank"

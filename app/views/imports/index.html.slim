@@ -9,19 +9,21 @@
     thead
       tr
         th Mã đơn hàng
-        th = t('table.imports.user_name')
         th = t('table.imports.unit_price')
         th = t('table.imports.supplier_name')        
-        th = t('table.common.status')        
+        th = t('table.common.status')
+        th = t('table.imports.user_name')  
+        th Ngày tạo      
         th = t('common.action')
     tbody
       - @imports.each do |import|
         tr
           td = import.pay.code
-          td = import.user.username
-          td = import.total_price 
+          td = number_to_currency(import.total_price)
           td = import.supplier&.name
           td = Import.translate_enum_name(:status, import.status)
+          td = import.user.username
+          td = import.created_at.strftime('%d/%m/%Y')
           td 
             ul.actions
               - if can? :show, import

@@ -18,9 +18,9 @@
         td 
           = @product&.name
         td 
-          = @product.original_price
+          = number_to_currency(@product.original_price)
         td
-          = @product.unit_price_with_tax
+          = number_to_currency(@product.unit_price_with_tax)
         td
           = @product.quantity
         td
