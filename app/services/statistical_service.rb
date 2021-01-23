@@ -96,6 +96,7 @@ class StatisticalService
     end
 
     def details_imported_items(imported_items)
+      byebug
       details = []
       imported_items.each do |imported_item|
         details << {
@@ -113,7 +114,7 @@ class StatisticalService
       details = []
       exported_items.each do |exported_item|
         details << {
-          imported_id: "ID NHẬP HÀNG / #{exported_item.export.id}",
+          imported_id: "HOÁ ĐƠN XUẤT HÀNG / #{exported_item.export.pay.code}",
           user: exported_item.export.user.username,
           user_id: exported_item.export.user.id,
           quantity: exported_item.quantity,

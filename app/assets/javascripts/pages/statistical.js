@@ -77,7 +77,7 @@ CNPMPttkht.statistical = {
             users:  users,
             quantity: quantity_product
           }
-          if (rs.details.length > 1) {
+          if (rs.details.length > 0) {
             temporary._children = formatChild(rs.details, rs.product_name)
           }
           data.push(temporary)

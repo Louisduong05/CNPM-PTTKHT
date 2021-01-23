@@ -25,7 +25,7 @@ class ImportedItem < ApplicationRecord
     return false if product.blank?
     return if warehouse.capacity.to_i - plus_current_warehouse >= 0
     
-    errors.add(:quantity, ':The current warehouse does not have enough spaceh')
+    errors.add(:quantity, ':Kho không đủ chỗ chứa')
     false
   end
 

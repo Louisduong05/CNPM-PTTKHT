@@ -33,7 +33,7 @@ section.shared-sidebar
     - if current_user.type == 'Admin'
       li
         i.fa.fa-home aria-hidden="true"
-        = link_to t('common.statistical'), statistical_index_path
+        = link_to 'Thống kê sản phẩm', statistical_index_path
     - if can? :index, User  
       li 
         i.fa.fa-cog aria-hidden="true"
