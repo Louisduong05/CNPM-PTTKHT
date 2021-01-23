@@ -30,5 +30,6 @@
           td 
             ul.actions
               li = link_to t('common.edit'), edit_account_path(account)
-              li = link_to t('common.turn_off'),account_path(account), method: :delete
+              - if account.id != current_user.id
+                li = link_to t('common.turn_off'),account_path(account), method: :delete
   = will_paginate @accounts, :previous_label => '<<', :next_label => '>>', renderer: BootstrapPagination::Rails

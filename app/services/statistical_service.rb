@@ -96,7 +96,6 @@ class StatisticalService
     end
 
     def details_imported_items(imported_items)
-      byebug
       details = []
       imported_items.each do |imported_item|
         details << {
