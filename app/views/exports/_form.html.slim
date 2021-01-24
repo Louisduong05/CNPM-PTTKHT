@@ -3,6 +3,6 @@
   = f.fields_for :exported_items do |e|
     = e.association :product
     = e.input :quantity
-    = e.link_to_remove "Remove this task"
-  p = f.link_to_add "Add a task", :exported_items
+    = e.link_to_remove "Xoá phần này đi"
+  p = f.link_to_add "Thêm sản phẩm khác", :exported_items
   = f.button :submit

@@ -4,6 +4,6 @@
     = e.association :product, collection: Product.where(is_active: true)
     = e.input :quantity
     = e.input :unit_price
-    = e.link_to_remove "Remove this task"
-  p = f.link_to_add "Add a task", :imported_items
+    = e.link_to_remove "Xoá phần này đi"
+  p = f.link_to_add "Thêm sản phẩm khác", :imported_items
   = f.button :submit
